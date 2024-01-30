@@ -1,9 +1,10 @@
-SDMS-Frontend
+# SDMS-Frontend
 This is the frontend of our Sports Drawing and Management System using React
 
-Authors
-Richard Miruka
+# Authors
 
-Alphonce Mcrymbo
+[Richard Miruka](https://github.com/RichardMiruka)
 
-Samwel Aboki
+[Alphonce Mcrymbo](https://github.com/Mcrymbo)
+
+[Samwel Aboki](https://github.com/Abokiey)
