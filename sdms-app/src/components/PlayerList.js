@@ -4,7 +4,8 @@ const PlayerList = () => {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    fetch('/api/players')  // I have to replace this with the actual endpoint for fetching players from the backend api
+    
+    fetch('/api/players')  //I will have to replace with the actual endpoint(api) for fetching players
       .then(response => response.json())
       .then(data => setPlayers(data))
       .catch(error => console.error('Error fetching players:', error));
