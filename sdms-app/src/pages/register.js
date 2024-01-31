@@ -7,7 +7,6 @@ const RegisterPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone_number, setPhonenumber] = useState('');
-  const [user_type, setUsertype] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError]= useState('');
 
@@ -18,7 +17,7 @@ const RegisterPage = ({ onLogin }) => {
     headers:{
       'Content-Type':'application/json'
     },
-    body:JSON.stringify({username, password, email, phone_number,user_type}),
+    body:JSON.stringify({username, password, email, phone_number}),
   }
   );
   const data=await response.json()
