@@ -3,13 +3,15 @@ import './login.css';
 import { useNavigate, Link} from 'react-router-dom'
 
 const RegisterPage = ({ onLogin }) => {
+  const [user_type, setUsertype] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone_number, setPhonenumber] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError]= useState('');
-
+    
+    
   const navigate=useNavigate()
   const handleRegister=async()=>{
     try { const response=await fetch('https://ourapi/api/v1/User/create',{
@@ -84,7 +86,7 @@ const RegisterPage = ({ onLogin }) => {
         className="form-input">
           <option value=''>select user_type</option>
           <option value='organizer'>organizer</option>
-          <option value='participant'>participant</option>
+          <option value='coach'>coach</option>
         </select>
         </div>
         <br />
