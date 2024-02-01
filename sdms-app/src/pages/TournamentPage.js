@@ -66,4 +66,4 @@ const SingleEliminationTournament = ({ numPlayers }) => {
   );
 };
 
-export default EliminationTournament;
+export default SingleEliminationTournament;
