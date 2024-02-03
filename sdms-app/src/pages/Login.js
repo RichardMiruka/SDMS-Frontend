@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './login.css';
 import { useNavigate, Link } from 'react-router-dom'
 
 const LoginPage = ({ onLogin }) => {
@@ -38,10 +37,10 @@ const LoginPage = ({ onLogin }) => {
     {error && <p>{error}</p>}
       <form>
         <h1>Log in</h1>
-        <label>Username</label>
+        <label>Email</label>
         <input
           type='text'
-          placeholder='username'
+          placeholder='Email'
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
