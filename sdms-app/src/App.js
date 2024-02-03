@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import RegisterPage from './pages/register';
 import TournamentPage from './pages/TournamentPage';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/tournament" element={<TournamentPage />} />
+          <Route path="/Register" element={<RegisterPage/>}/>
         </Routes>
       </div>
     </Router>
