@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import RegisterPage from './pages/register';
+import LoginPage from './pages/login';
 import TournamentPage from './pages/TournamentPage';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/tournament" element={<TournamentPage />} />
           <Route path="/Register" element={<RegisterPage/>}/>
+          <Route path='/Login' element={< LoginPage/>} />
         </Routes>
       </div>
     </Router>

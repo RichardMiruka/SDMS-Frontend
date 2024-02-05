@@ -31,54 +31,52 @@ const RegisterPage = ({ onLogin }) => {
   const conPwdRef = useRef(null);
 
   const [message, setMessage] = useState('')
+  const [error, setError] = useState('')
   const [errmsg, setErrMsg] = useState('')
-  const [isSubmited, setIsSubmitted] = useState(false)
+  const [isValid, setIsValid] = useState(false)
 
 
-  // const navigate=useNavigate()
-  // const handleRegister=async()=>{
-  //   try { const response=await fetch('https://ourapi/api/v1/User/create',{
-  //   method:'POST',
-  //   headers:{
-  //     'Content-Type':'application/json'
-  //   },
-  //   body:JSON.stringify({username, password, email, phone_number}),
-  // }
-  // );
-  // const data=await response.json()
-  // if (response.ok){
-  //   setMessage(data.message)
-  //   setError('')
-  //   navigate('/login')
-  // }
-  // else{
-  //   setError(data.error)
-  //   setMessage('')
-  // }  
-  //   } catch (error) {
-  //     setError('An error occurred, please do try again')
-  //   }
-  // }
+  const navigate=useNavigate()
+  const handleRegister=async(e)=>{
+    try { const response=await fetch('http://127.0.0.1:5000/api/v1/users',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({first_name, last_name, email, phone_number, password}),
+  }
+  );
+  const data=await response.json()
+  localStorage.setItem('userData', JSON.stringify(data));
+  if (response.ok){
+    setMessage(data.message)
+    setError('')
+    // navigate('/login')
+  }
+  else{
+    setError(data.error)
+    setMessage('')
+  }  
+    } catch (error) {
+      console.log(error)
+      setError('An error occurred, please do try again')
+    }
+  }
   
   const validate = () => {
     if (!first_name) {
       setErrFN('Missing first name');
-    } 
-    if (!last_name) {
+    } else if (!last_name) {
       setErrLN('Missing last name');
-    } 
-    if (!email) {
+    } else if (!email) {
       setErrEmail('Missing Email')
-    } else {
-      setErrEmail('')
-    }
-    if (!password) {
+    } else if (!password) {
       setErrPwd('Missing password')
-    }
-
-    if (!conPassword) {
+    } else if (!conPassword) {
       setErrConPwd('Missing confirm password')
-    } 
+    } else {
+      setIsValid(true)
+    }
   }
 
   const handleEmailChange = (e) => {
@@ -122,22 +120,21 @@ const RegisterPage = ({ onLogin }) => {
     validate();
     if (password !== conPassword) {
       setErrMsg('paswords do not match');
+      setPassword("");
+      setConPassword("");
       // setMessage('form formitted successfully');
       // setIsSubmitted(true);
       // setTimeout(()=>{
       //   window.location.reload();
       // }, [3000])
-    } else if (password === conPassword) {
-      setMessage('form formitted successfully');
-      reseState();
-    } else {
-      setErrMsg('paswords do not match');
-      setPassword("");
-      setConPassword("");
+    } else if (password && conPassword && password === conPassword) {
+      handleRegister();
+      // setMessage('form formitted successfully');
+      resetState();
     }
   };
 
-  const reseState = () => {
+  const resetState = () => {
     setfirst_name('');
     setlast_name('');
     setEmail('');
@@ -147,14 +144,15 @@ const RegisterPage = ({ onLogin }) => {
   }
 
   return (
-    <div className="bg-grey-100 h-screen flex items-center justify-center px-6 mb-12">
+    <div className="bg-indigo-300 flex items-center justify-center px-6">
       <div>
+      {message && <p className="bg-green-500 shadow-md text-center text-white p-2 rounded-md mt-4">{message}</p>}
+      {error && <p  className="bg-red-500 shadow-md text-center text-white p-2 rounded-md mt-4">{error}</p>}
+      <div className="bg-gradient-to-r from-blue-400 via-purple-400 to-purple-700 px-20 mt-4 mb-10 rounded-xl">
           {/* <img src="client/src/images/login.png" alt="logo"/> */}
-          {/* {message && <p>{message}</p>}
-          {error && <p>{error}</p>} */}
-            <p className="text-center bg-green-300 text-white rounded-md">{message}</p>
-            <form  className="w-full"> {/*onSubmit={handleRegister} */}
-              <h1 className="text-center mb-4">Please Sign up</h1>
+            {/* <p className="text-center bg-green-700 w-full text-white rounded-md">{message}</p> */}
+            <form onSubmit={handleSubmit} className="w-full"> {/*onSubmit={handleRegister} */}
+              <h1 className="text-center mb-4 text-2xl font-bold pt-4">Sign up</h1>
               <div className="flex space-x-8">
                     <div className="mb-4">
                         <label htmlFor="first_name" className="block text-sm font-medium text-grey-600">First Name</label>
@@ -242,7 +240,7 @@ const RegisterPage = ({ onLogin }) => {
                   <label htmlFor="conPassword" className="block text-sm font-medium text-grey-600">confirm password</label>
                   <input
                     type='password'
-                    id='coPassword'
+                    id='conPassword'
                     ref={conPwdRef}
                     placeholder='Confirm password'
                     required
@@ -255,10 +253,11 @@ const RegisterPage = ({ onLogin }) => {
               <p className="text-center text-red-500">{errmsg}</p>
               <button type='submit' onClick={handleSubmit} className="bg-blue-700 text-white px-4 py-2 mb-4 mt-4 rounded-md" >Register</button>
               <br />
-              <div>
-                  Already Registered?<span className="text-blue-700 underline font-semibold"><Link to="/login">login</Link></span>
+              <div className="mb-8">
+                  Already Registered? <span className="text-blue-700 underline font-bold text-xl"><Link to="/login">login</Link></span>
               </div>
             </form>
+      </div>
       </div>
     </div>
   );
