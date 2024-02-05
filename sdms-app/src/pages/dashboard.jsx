@@ -1,9 +1,14 @@
-// Dashboard.js
 import React, { useState, useEffect } from 'react';
+import TournamentTeams from '../components/Team';
+
+
+
+
 
 const Dashboard = () => {
   const [tournaments, setTournaments] = useState([]);
   const [draws, setDraws] = useState([]);
+
 
   useEffect(() => {
     // Fetch tournament data from the backend API
@@ -25,7 +30,7 @@ const Dashboard = () => {
       });
   }, []);
 	
-  
+
 
   // Dummy tournament data
   const dummyTournaments = [
@@ -49,7 +54,7 @@ const Dashboard = () => {
     { id: 3, match: 'Kenya Police vs Bandari FC' },
     { id: 4, match: 'Ulinzi Stars vs Shabana FC' },
   ];
-
+    
   const last8Tournaments = tournaments.slice(-8);
   const last5Draws = draws.slice(-5)
   return (
@@ -63,12 +68,16 @@ const Dashboard = () => {
             			{last8Tournaments.map(tournament => (
              	 		<li className='flex text-center bg-white/50 rounded shadow-md mb-3'>
 							<span className='text-base' key={tournament.id}>{tournament.name}</span>
+              <button className="ml-2 bg-blue-500 px-2 py-1 text-white rounded p-4 m-1 ml-auto">
+                View Teams
+              </button>
 						</li>
             			))}
           			</ul>
         		</div>
 			</div>
 		<div>
+      
 		<div className='flex items-center p-4'>
 			<div className='p-4 min-h-screen items-start'>
 				<div className="mb-4 bg-blue-500 p-6 rounded shadow-md w-full max-w-lg">
@@ -89,6 +98,7 @@ const Dashboard = () => {
 	</div>
 
 	</div>
+  
         
     </div>
   );
