@@ -7,10 +7,10 @@ const Home = () => {
     <div className="jumbotron">
       <h1 classname="display-4"><b>Welcome to the Tournament Site</b></h1>
       <br/>
-      <p className="lead">This is a simple tournament site that allows you to explore tournaments, view match results, and enjoy the competition.</p>
+      <p className="lead">This is a tournament site that allows you to explore tournaments, view match results, and enjoy the competitions.</p>
       {/* <hr className="my-4" /> */}
-      <p classname='lead'>This platform allows Event Organizers to create, update and manage tournament fixtures</p><br/>
-      <p classname="lead">
+      <p className='lead'>This platform allows Event Organizers to create, update and manage tournament fixtures</p><br/>
+      <p className="lead">
         <Link className="btn btn-primary btn-lg" to="/tournaments" role="button">View Tournaments</Link>
       </p>
     </div>

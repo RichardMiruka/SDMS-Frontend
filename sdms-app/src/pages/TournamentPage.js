@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TeamList, { useState} from '../components/TeamList'
 
 const generateInitialTournamentData = (numPlayers) => {
   const rounds = Math.ceil(Math.log2(numPlayers));
