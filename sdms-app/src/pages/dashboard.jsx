@@ -57,6 +57,7 @@ const Dashboard = () => {
   const last8Tournaments = tournaments.slice(-8);
   const last5Draws = draws.slice(-5)
   return (
+    <div>
     <div className="min-h-screen flex flex-col gap-4 items-stretch justify-center ">
 		<div className='flex items-center p-4'>
 			<div className='w-1/2 p-4 border-r min-h-screen flex items-start'>
@@ -99,6 +100,9 @@ const Dashboard = () => {
 	</div>
   
         
+    </div>
+      
+
     </div>
   );
 };
