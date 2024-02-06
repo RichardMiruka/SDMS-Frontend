@@ -1,132 +1,243 @@
-const [first_name, setfirst_name] = useState('');
-const [errFN, setErrFN] = useState('');
-const firstNameRef = useRef(null);
+import { useEffect, useState } from 'react';
+import { Bracket, Seed, SeedItem, SeedTeam } from 'react-brackets';
 
-const [last_name, setlast_name] = useState('');
-const [errLN, setErrLN] = useState('');
-const lastNameRef = useRef(null);
-
-const [phone_number, setPhonenumber] = useState('');
-
-const [email, setEmail] = useState('');
-const [errEmail, setErrEmail] = useState('');
-const emailRef = useRef(null)
-
-const [password, setPassword] = useState('');
-const [errPwd, setErrPwd] = useState('');
-const pwdRef = useRef(null);
-
-const [conPassword, setConPassword] = useState('');
-const [errConPwd, setErrConPwd] = useState(false)
-const conPwdRef = useRef(null);
-
-const [message, setMessage] = useState('')
-const [error, setError] = useState('')
-const [errmsg, setErrMsg] = useState('')
-const [isValid, setIsValid] = useState(false)
-
-
-const navigate=useNavigate()
-const handleRegister=async()=>{
-  try { const response=await fetch('http://127.0.0.1:5000/api/v1/users',{
-  method:'POST',
-  headers:{
-    'Content-Type':'application/json'
+const Teams = [
+  {
+    id: 2,
+    'name': "Player 2"
   },
-  body:JSON.stringify({first_name, last_name, email, phone_number, password}),
-}
-);
-const data=await response.json()
-if (response.ok){
-  setMessage(data.message)
-  setError('')
-  navigate('/login')
-}
-else{
-  setError(data.error)
-  setMessage('')
-}  
-  } catch (error) {
-    setError('An error occurred, please do try again')
+  {
+    id: 3,
+    'name': "Player 3"
+  },
+  {
+    id: 4,
+    'name': "Player 4"
+  },
+  {
+    id: 5,
+    'name': "Player 5"
+  },
+  {
+    id: 6,
+    'name': "Player 6"
+  },
+  {
+    id: 7,
+    'name': "Player 7"
+  },
+  {
+    id: 8,
+    'name': "Player 8"
+  },
+  {
+    id: 9,
+    'name': "Player 9"
+  },
+  {
+    id: 10,
+    'name': "Player 10"
+  },
+  {
+    id: 11,
+    'name': "Player 11"
+  },
+  {
+    id: 12,
+    'name': "Player 12"
+  },
+  {
+    id: 2,
+    'name': "Player 2"
+  },
+  {
+    id: 17,
+    'name': "Player 17"
+  },
+  {
+    id: 18,
+    'name': "Player 18"
+  },
+  {
+    id: 19,
+    'name': "Player 19"
+  },
+  {
+    id: 20,
+    'name': "Player 20"
+  },
+  {
+    id: 17,
+    'name': "Player 17"
+  },
+  {
+    id: 18,
+    'name': "Player 18"
+  },
+  {
+    id: 19,
+    'name': "Player 19"
+  },
+  {
+    id: 20,
+    'name': "Player 20"
+  },
+  {
+    id: 17,
+    'name': "Player 17"
+  },
+  {
+    id: 18,
+    'name': "Player 18"
+  },
+  {
+    id: 19,
+    'name': "Player 19"
+  },
+  {
+    id: 20,
+    'name': "Player 20"
   }
-}
+]
 
-const validate = () => {
-  if (!first_name) {
-    setErrFN('Missing first name');
-  } else if (!last_name) {
-    setErrLN('Missing last name');
-  } else if (!email) {
-    setErrEmail('Missing Email')
-  } else if (!password) {
-    setErrPwd('Missing password')
-  } else if (!conPassword) {
-    setErrConPwd('Missing confirm password')
-  } else {
-    setIsValid(true)
-  }
-}
+const TournamentComponent = ({seedIndex}) => {
+  const [rounds, setRounds] = useState([]);
 
-const handleEmailChange = (e) => {
-  if (emailRef.current.value){
-    setErrEmail('')
-  }
-  setEmail(e.target.value);
-}
+  useEffect(() => {
+    // Generate tournament rounds based on the number of teams
+    const generateRounds = (teams) => {
+      const numTeams = teams.length;
 
-const handleFirstName = (e) => {
-  if (firstNameRef.current.value){
-    setErrFN('');
-  }
-  setfirst_name(e.target.value);
-}
+      // Calculate the number of byes needed to make the number of teams a power of 2
+      const numByes = Math.pow(2, Math.ceil(Math.log2(numTeams))) - numTeams;
 
-const handleLastName = (e) => {
-  if (lastNameRef.current.value){
-    setErrLN('');
-  }
-  setlast_name(e.target.value);
-}
+      const byesPerRound = Math.ceil(numByes / (Math.log2(numTeams) - 1));
 
-const handlePassword = (e) => {
-  if (pwdRef.current.value){
-    setErrPwd('');
-    setErrMsg('')
-  }
-  setPassword(e.target.value);
-}
-const handlConPassword = (e) => {
-  if (conPwdRef.current.value){
-    setErrConPwd('');
-    setErrMsg('')
-  }
-  setConPassword(e.target.value);
-}
+      // Fill in byes
+      const teamsWithByes = [...teams];
+      let byeCounter = 1;
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  validate();
-  if (password !== conPassword) {
-    setErrMsg('paswords do not match');
-    setPassword("");
-    setConPassword("");
-    // setMessage('form formitted successfully');
-    // setIsSubmitted(true);
-    // setTimeout(()=>{
-    //   window.location.reload();
-    // }, [3000])
-  } else if (isValid && password && password === conPassword) {
-    handleRegister();
-    // setMessage('form formitted successfully');
-    reseState();
-  }
+      for (let round = 0; round < Math.log2(numTeams) - 1; round++) {
+        const byesForCurrentRound = Math.min(byesPerRound, numByes - (round * byesPerRound));
+
+        for (let i = 0; i < byesForCurrentRound && byeCounter <= numByes; i++) {
+          teamsWithByes.splice(round * (byesPerRound * 2) + i * 2, 0, {
+            id: `bye${byeCounter}`,
+            name: `Bye ${byeCounter}`,
+            bye: true,
+          });
+          byeCounter++;
+        }
+      }
+
+      const rounds = [];
+      let currentRoundTeams = [...teamsWithByes];
+
+      while (currentRoundTeams.length > 1) {
+        const matches = [];
+        for (let i = 0; i < currentRoundTeams.length; i += 2) {
+          const teamA = currentRoundTeams[i];
+          const teamB = currentRoundTeams[i + 1];
+          const match = {
+            id: i / 2 + 1,
+            title: `Match ${i + 1}`,
+            date: new Date().toDateString(),
+            teams: [
+              { name: teamA.name },
+              { name: teamB.name },
+            ],
+          };
+          matches.push(match);
+        }
+        const roundTitle = rounds.length + 1;
+        rounds.push({ title:  `Round ${roundTitle}`, seeds: matches });
+
+        // Update the currentRoundTeams with the winners of the current round
+        currentRoundTeams = matches.map((match) => ({
+          id: match.id,
+          // name: `Winner ${match.title} ${seedIndex}`,
+          // name: `${match.teams[0].name} vs ${match.teams[1].name} Winner`,
+        }));
+      }
+
+      return rounds;
+    };
+
+    // Call the generateRounds function with the Teams data
+    const generatedRounds = generateRounds(Teams);
+
+    // Set the generated rounds in the state
+    setRounds(generatedRounds);
+  }, []); // Run this effect only once on component mount
+
+  // Custom rendering function for seeds
+  const renderSeedComponent = ({ seed, breakpoint, roundIndex, seedIndex }) => {
+    const homeTeam = seed.teams[0];
+    const awayTeam = seed.teams[1];
+
+    const hasBye = homeTeam.bye || awayTeam.bye;
+
+    return (
+      <Seed mobileBreakpoint={breakpoint} style={{ fontSize: 14 }}>
+        {getRoundType(roundIndex, Teams.length, seedIndex)}
+      <SeedItem>
+        <SeedTeam className='bg-red-500 text-white'>
+          <div>
+              <div>
+            {/* {homeTeam.name ? homeTeam.name :
+              `Winner R${roundIndex}M${seedIndex + 1}`} */}
+               {gametype(homeTeam.name, roundIndex, Teams.length, 2 * seedIndex + 1)}
+              </div>
+            {homeTeam.bye && <div>Bye</div>}
+          </div>
+          {homeTeam.score && <div className='ml-2 text-black'>{homeTeam.score}</div>}
+        </SeedTeam>
+        <SeedTeam className='bg-blue-500 text-white'>
+          <div>
+            {/* {awayTeam.name ? awayTeam.name :
+              `Winner R${roundIndex}M${seedIndex + 2}`} */}
+            <div>{gametype(awayTeam.name, roundIndex, Teams.length, ((2 * seedIndex + 1) + 1))}</div>
+            {awayTeam.bye && <div>Bye</div>}
+          </div>
+          {awayTeam.score && <div className='ml-2 text-black'>{awayTeam.score}</div>}
+        </SeedTeam>
+      </SeedItem>
+      {hasBye && <div>{awayTeam.name ? `${awayTeam.name} wins` : '---- wins'}</div>}
+
+      </Seed>
+    );
+  };
+
+  const getRoundType = (roundIndex, numTeams, seedIndex) => {
+    const totalRounds = Math.ceil(Math.log2(numTeams));
+  
+    if (roundIndex === totalRounds - 1) {
+      return 'Finals';
+    } else if (roundIndex === totalRounds - 2) {
+      return `Semifinals ${seedIndex + 1}`;
+    } else if (roundIndex === totalRounds - 3) {
+      return `Quarterfinals  ${seedIndex + 1}`;
+    } else {
+      return `Match ${seedIndex + 1}`
+    }
+    
+  };
+
+  const gametype = (hTeam, roundIndex, numTeams, seedIndex) => {
+    const totalRounds = Math.ceil(Math.log2(numTeams));
+    if (hTeam){
+      return hTeam
+    } else if (roundIndex === totalRounds - 1) {
+      return `SemiFinals ${seedIndex} Winner`;
+    } else if (roundIndex === totalRounds - 2) {
+        return `QuaterFinal ${seedIndex} Winner`;
+    } else {
+      return `Winner R${roundIndex}M${seedIndex}`
+    }   
+  };
+
+  return <Bracket rounds={rounds} renderSeedComponent={renderSeedComponent} />;
+
 };
 
-const reseState = () => {
-  setfirst_name('');
-  setlast_name('');
-  setEmail('');
-  setPassword('')
-  setConPassword('')
-  setPhonenumber('')
-}
+export default TournamentComponent;
