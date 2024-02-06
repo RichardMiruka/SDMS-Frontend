@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import TournamentTeams from '../components/Team';
-
-
+import { Link } from 'react-router-dom';
 
 
 
 const Dashboard = () => {
   const [tournaments, setTournaments] = useState([]);
   const [draws, setDraws] = useState([]);
+
 
 
   useEffect(() => {
@@ -69,7 +68,7 @@ const Dashboard = () => {
              	 		<li className='flex text-center bg-white/50 rounded shadow-md mb-3'>
 							<span className='text-base' key={tournament.id}>{tournament.name}</span>
               <button className="ml-2 bg-blue-500 px-2 py-1 text-white rounded p-4 m-1 ml-auto">
-                View Teams
+                <Link to="/Teams">View Teams </Link>
               </button>
 						</li>
             			))}
