@@ -20,11 +20,11 @@ const EventList = () => {
       <h2>Event List</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, at dolor. Minima voluptate eos molestias fuga perspiciatis vel tenetur mollitia ab quam, fugit qui quo rem adipisci aliquam ipsam reiciendis.</p>
       <ul>
-        {/* {events.map(event => (
+         {events.map(event => (
           <li key={event.event_id}>
             <strong>{event.name}</strong>
           </li>
-        ))} */}
+        ))} 
       </ul>
     </div>
   );
