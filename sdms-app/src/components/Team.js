@@ -39,7 +39,7 @@ import {
     },
   ];
    
-  const TABLE_HEAD = ["Team", "Coach", "Affiliated", "Date of registration", ""];
+  const TABLE_HEAD = ["Team", "Coach", "status", "Date of registration", ""];
    
   const TABLE_ROWS = [
     {
@@ -184,85 +184,69 @@ import {
               </tr>
             </thead>
             <tbody>
-              {TABLE_ROWS.map(
-                ({ img, team, email, coach, org, affiliated, date }, index) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
-                  const classes = isLast
-                    ? "p-4"
-                    : "p-4 border-b border-blue-gray-50";
-   
-                  return (
-                    <tr key={team}>
-                      <td className={classes}>
-                        <div className="flex items-center gap-3">
-                          <Avatar src={img} alt={team} size="sm" />
-                          <div className="flex flex-col">
-                            <Typography
-                              variant="small"
-                              color="blue-gray"
-                              className="font-normal"
-                            >
-                              {team}
-                            </Typography>
-                            {/* <Typography
-                              variant="small"
-                              color="blue-gray"
-                              className="font-normal opacity-70"
-                            >
-                              {email}
-                            </Typography> */}
-                          </div>
-                        </div>
-                      </td>
-                      <td className={classes}>
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                          >
-                            {coach}
-                          </Typography>
-                          {/* <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal opacity-70"
-                          >
-                            {org}
-                          </Typography> */}
-                        </div>
-                      </td>
-                      <td className={classes}>
-                        <div className="w-max">
-                          <Chip
-                            variant="ghost"
-                            size="sm"
-                            value={affiliated ? "Yes" : "No"}
-                            color={affiliated ? "green" : "blue-gray"}
-                          />
-                        </div>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {date}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Tooltip content="Edit User">
-                          <IconButton variant="text">
-                            <PencilIcon className="h-4 w-4" />
-                          </IconButton>
-                        </Tooltip>
-                      </td>
-                    </tr>
-                  );
-                },
-              )}
-            </tbody>
+        {teamData.map(({ name, coach, status, created_at }, index) => {
+          const isLast = index === teamData.length - 1;
+          const classes = isLast
+            ? "p-4"
+            : "p-4 border-b border-blue-gray-50";
+
+          return (
+            <tr key={name}>
+              <td className={classes}>
+                <div className="flex items-center gap-3">
+                  <Avatar src={coach?.img} alt={name} size="sm" />
+                  <div className="flex flex-col">
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {name}
+                    </Typography>
+                  </div>
+                </div>
+              </td>
+              <td className={classes}>
+                <div className="flex flex-col">
+                  <Typography
+                    variant="small"
+                    color="blue-gray"
+                    className="font-normal"
+                  >
+                    {coach?.name}
+                  </Typography>
+                </div>
+              </td>
+              <td className={classes}>
+                <div className="w-max">
+                  <Chip
+                    variant="ghost"
+                    size="sm"
+                    value={status === "affiliated" ? "Yes" : "No"}
+                    color={status === "affiliated" ? "green" : "blue-gray"}
+                  />
+                </div>
+              </td>
+              <td className={classes}>
+                <Typography
+                  variant="small"
+                  color="blue-gray"
+                  className="font-normal"
+                >
+                  {created_at}
+                </Typography>
+              </td>
+              <td className={classes}>
+                <Tooltip content="Edit User">
+                  <IconButton variant="text">
+                    <PencilIcon className="h-4 w-4" />
+                  </IconButton>
+                </Tooltip>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
           </table>
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">

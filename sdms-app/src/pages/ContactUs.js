@@ -10,7 +10,7 @@ function ContactUs() {
           <div className="flex flex-wrap items-center">
             <div className="block w-full shrink-0 grow-0 basis-auto lg:flex lg:w-6/12 xl:w-4/12">
               <div className="h-[500px] w-full">
-                <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" className="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.9763144026188!2d36.93756097364643!3d-1.1771350355137913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3f6e3a00da73%3A0x3d95670af2d4e5f8!2sUnicity%20Mall!5e0!3m2!1 sen!2 ske!4v1707304763750!5m2!1sen!2ske" className="left-0 top-0 h-full w-full rounded-t-lg lg:rounded-tr-none lg:rounded-bl-lg" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
             <div className="w-full shrink-0 grow-0 basis-auto lg:w-6/12 xl:w-8/12">
