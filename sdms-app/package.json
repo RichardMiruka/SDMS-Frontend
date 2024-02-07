@@ -12,17 +12,10 @@
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "react": "^18.2.0",
-<<<<<<< HEAD
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.3",
     "react-scripts": "5.0.1",
-=======
-    "react-brackets": "^0.4.7",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3",
-    "react-scripts": "^5.0.1",
->>>>>>> 39224d5f9c872b6bc0293d4ecb9b772d5dd01146
     "web-vitals": "^2.1.4"
   },
   "scripts": {
