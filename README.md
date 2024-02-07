@@ -1,2 +1,5 @@
 # SDMS-Frontend
 This is the frontend of our Sport Drawing and Management System using React
+
+Authors:
+Alphonce Mcrymbo

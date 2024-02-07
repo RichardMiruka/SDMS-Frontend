@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import TeamList, { useState} from '../components/TeamList'
+=======
+import React, { useState, useEffect } from 'react';
+import TournamentComponent from '../components/brackets';
+import Sidebar from '../components/sidebar';
+
+>>>>>>> 39224d5f9c872b6bc0293d4ecb9b772d5dd01146
 
 const generateInitialTournamentData = (numPlayers) => {
   const rounds = Math.ceil(Math.log2(numPlayers));
@@ -37,32 +44,18 @@ const SingleEliminationTournament = ({ numPlayers }) => {
   };
 
   return (
-    <div>
-      <h2>Elimination Tournament</h2>
-      {tournamentData.map((round, roundIndex) => (
-        <div key={roundIndex} className="round">
-          <h3>Round {roundIndex + 1}</h3>
-          {round.map((matchup, matchIndex) => (
-            <div key={matchIndex} className="matchup">
-              <span>{matchup.player1}</span>
-              <span>vs</span>
-              <span>{matchup.player2}</span>
-              <button
-                onClick={() => handleMatchResult(roundIndex, matchIndex, 'player1')}
-                disabled={!matchup.player1 || !matchup.player2}
-              >
-                {matchup.player1} wins
-              </button>
-              <button
-                onClick={() => handleMatchResult(roundIndex, matchIndex, 'player2')}
-                disabled={!matchup.player1 || !matchup.player2}
-              >
-                {matchup.player2} wins
-              </button>
-            </div>
-          ))}
+    <div >
+      <div className='flex'>
+        <Sidebar />
+          <div className='flex-grow bg-grar-200 w-full mx-auto'>
+          <h2 className='text-center'>Elimination Tournament</h2>
+          </div>       
+      </div>
+      {/* <div className='mx-10 bg-blue-200'>
+        <div className=''>
+           <TournamentComponent />
         </div>
-      ))}
+      </div>   */}
     </div>
   );
 };
