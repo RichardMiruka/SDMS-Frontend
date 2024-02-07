@@ -4,7 +4,7 @@ const TeamList = () => {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch('/api/teams')  // To replace with our actual endpoint for fetching teams from backend API
+    fetch('http://127.0.0.1:5000/api/v1/teams')  // To replace with our actual endpoint for fetching teams from backend API
       .then(response => response.json())
       .then(data => setTeams(data))
       .catch(error => console.error('Error fetching teams:', error));

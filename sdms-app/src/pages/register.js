@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate, Link} from 'react-router-dom'
-import { faCheck, faTimes, faCircle, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // const passwordRegex = /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%]).{4,24}$/;

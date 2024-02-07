@@ -241,3 +241,63 @@ const TournamentComponent = ({seedIndex}) => {
 };
 
 export default TournamentComponent;
+
+
+
+
+
+  {/* <div onClick={() => setOpen(false)} className="relative" x-data="{ open: false }">
+            <button onClick={() => setOpen(!open)} className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm text-left text-white md:w-auto md:inline md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline">
+              <span>Tournaments</span>
+              <svg fill="currentColor" viewBox="0 0 20 20" className={`inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform ${open ? 'rotate-180' : 'rotate-0'} md:-mt-1`}>
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
+              </svg>
+            </button>
+            <div className={`absolute right-0 z-30 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48 ${open ? 'block' : 'hidden'}`}>
+              <div className="px-2 py-2 bg-white rounded-md shadow">
+                <a className="block px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline">
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                </a>
+                <a className="block px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" href="#">
+                  Link #2
+                </a>
+                <a className="block px-4 py-2 mt-2 text-sm text-gray-500 md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline" href="#">
+                  Link #3
+                </a>
+              </div>
+            </div>
+          </div> */}
+
+
+          <div ref={dropdownRef} className="relative">
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm text-left text-white md:w-auto md:inline md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline"
+          >
+            <span>Tournaments</span>
+            <svg
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              className="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </button>
+
+          {open && (
+            <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg">
+              {/* Dropdown content goes here */}
+              <u className='list-none mx'>
+                <li>DashBoad</li>
+                <li>Tournaments</li>
+                <li>Teams</li>
+                <li>Players</li>
+              </u>
+              {/* <p className="px-4 py-2 text-gray-800">Dropdown Content</p> */}
+            </div>
+          )}
+        </div>
