@@ -21,6 +21,7 @@ import {
     IconButton,
     Tooltip,
   } from "@material-tailwind/react";
+  import Modal from "./addTeamModal"
 
   
 
@@ -40,59 +41,38 @@ import {
   ];
    
   const TABLE_HEAD = ["Team", "Coach", "status", "Date of registration", ""];
+  const defaultTeamImg = "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
    
-  const TABLE_ROWS = [
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      team: "Chelsea",
-      email: "john@creative-tim.com",
-      coach: "mauriicio pochettino",
-      org: "Organization",
-      affiliated: true,
-      date: "23/04/18",
-    },
-      {
-        img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-        team: "Arsenal",
-        email: "alexa@creative-tim.com",
-        coach: "arsene wenger",
-        org: "Developer",
-        affiliated: false,
-        date: "23/04/18",
-      },
-      {
-          img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-          team: "Manchester United",
-          email: "laurent@creative-tim.com",
-          coach: "eric tenhag",
-          org: "Projects",
-          affiliated: false,
-          date: "19/09/17",
-        },
-    
-      {
-        img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-        team: "Liverpool",
-        email: "michael@creative-tim.com",
-        coach: "jurgen klopp",
-        org: "Developer",
-        affiliated: true,
-        date: "24/12/08",
-      },
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg",
-      team: "Everton",
-      email: "richard@creative-tim.com",
-      coach: "shawn dyke",
-      org: "Executive",
-      affiliated: false,
-      date: "04/10/21",
-    },
-  ];
+
   export function TeamList() {
     const [teamData, setTeamData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false)
+
+    const handleButtonClick = () => {
+      setModalOpen(true)
+    }
+
+    const updateTeamData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/api/v1/teams');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+  
+        const data = await response.json();
+        setTeamData(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    useEffect(() => {
+      updateTeamData();
+    }, []);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -137,11 +117,13 @@ import {
               <Button variant="outlined" size="sm">
                 view all
               </Button>
-              <Button className="flex items-center gap-3" size="sm">
+              <Button className="flex items-center gap-3" size="sm" onClick={handleButtonClick}>
                 <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Team
               </Button>
             </div>
           </div>
+          {/* Render the add team modal component */}
+          <Modal isOpen={modalOpen} setIsOpen={setModalOpen} setTeamData={updateTeamData} />
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <Tabs value="all" className="w-full md:w-max">
               <TabsHeader>
@@ -194,7 +176,7 @@ import {
             <tr key={name}>
               <td className={classes}>
                 <div className="flex items-center gap-3">
-                  <Avatar src={coach?.img} alt={name} size="sm" />
+                  <Avatar src={coach?.img || defaultTeamImg} alt={name} size="sm" />
                   <div className="flex flex-col">
                     <Typography
                       variant="small"
@@ -266,28 +248,6 @@ import {
     );
   }
 
-// const TeamList = () => {
-//   const [teams, setTeams] = useState([]);
 
-//   useEffect(() => {
-//     fetch('http://127.0.0.1:5000/api/v1/teams')  // To replace with our actual endpoint for fetching teams from backend API
-//       .then(response => response.json())
-//       .then(data => setTeams(data))
-//       .catch(error => console.error('Error fetching teams:', error));
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Team List</h2>
-//       <ul>
-//         {teams.map(team => (
-//           <li key={team.team_id}>
-//             <strong>{team.name}</strong>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
 
 export default TeamList;
