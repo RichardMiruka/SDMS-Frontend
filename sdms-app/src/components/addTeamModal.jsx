@@ -13,15 +13,19 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
 	console.log('Submit button clicked!');
     event.preventDefault();
 
-	if (nameRef.current && statusRef.current) {
-		console.log('Name:', nameRef.current.value);
-    	console.log('Status:', statusRef.current.value);
-		const formData = {
-		  name: nameRef.current.value,
-		  status: statusRef.current.value,
-		};
+
+	const formData = {
+		name: nameRef.current.value,
+		status: messageRef.current.value,
+	  };
+
+	  try {
+		console.log('Form Data:', formData);
   
-		try {
+		// Clear input values
+		nameRef.current.value = "";
+		messageRef.current.value = "";
+  
 		  const response = await fetch('http://127.0.0.1:5000/api/v1/teams', {
 			method: 'POST',
 			headers: {
@@ -46,7 +50,6 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
 		  console.error('Error updating data:', error);
 		}
 	  }
-	};
   
 
     return (
@@ -90,7 +93,7 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
                                 </div>
                                 <form className="space-y-6 px-8" action="#" onSubmit={submitFormData} ref={formRef}>
                                     <div>
-                                        <label for="name" className="block mb-2 text-sm font-medium text-gray-900">Name of your Team <span className='text-red-500'>*</span></label>
+                                        <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of your Team <span className='text-red-500'>*</span></label>
                                         <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g. Manchester United" required ref={nameRef} />
                                     </div>
                                     {/* <div>
