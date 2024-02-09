@@ -6,7 +6,7 @@ function Sidebar() {
 
   return (
     <div className='flex'>
-      <div className=' flex bg-gray-500 h-screen w-40 p text-white text-center'>
+      <div className=' flex bg-gray-500 h-screen w-30 p text-white text-center'>
           <div className='space-y-20'>
                 <div>Sidebar</div>
                 <ul className='flex-frow space-y-6 p-4'>
