@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './pages/dashboard';
+import Home from './pages/Home';
+import About from './pages/About';
+import TournamentTeams from './components/Team'
+import ContactUs from './pages/ContactUs';
+import LoginPage from './pages/Login';
+import RegisterPage from './pages/register';
+import TournamentPage from './pages/TournamentPage';
+import EventList from './components/EventList';
+import TeamList from './components/Team';
+import PlayerList from './components/PlayerList'
+import CoachList from './components/CoachList'
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="about" element={<About />} />
+          <Route path="Teams" element={<TournamentTeams />} />
+          <Route path="contact" element={<ContactUs />} />
+          <Route path="tournament" element={<TournamentPage />} >
+            <Route path='event' element={<EventList /> } />
+            <Route path='Team' element={<TeamList />} />
+            <Route path='players' element={<PlayerList />} />
+            <Route path='coaches' element={<CoachList/>}/>
+          </Route>
+          <Route path="/Register" element={<RegisterPage/>}/>
+          <Route path='/Login' element={< LoginPage/>} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
