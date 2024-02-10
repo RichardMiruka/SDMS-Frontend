@@ -4,7 +4,7 @@ import {
     MagnifyingGlassIcon,
     ChevronUpDownIcon,
   } from "@heroicons/react/24/outline";
-  import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+  import { TrashIcon, UserPlusIcon } from "@heroicons/react/24/solid";
   import {
     Card,
     CardHeader,
@@ -22,6 +22,7 @@ import {
     Tooltip,
   } from "@material-tailwind/react";
   import Modal from "./addTeamModal"
+
 
   
 
@@ -49,10 +50,32 @@ import {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [modalOpen, setModalOpen] = useState(false)
+    
 
     const handleButtonClick = () => {
-      setModalOpen(true)
-    }
+      setModalOpen(true);
+    };
+
+    const deleteTeam = async (teamId) => {
+      try {
+        const response = await fetch(`http://127.0.0.1:5000/api/v1/teams/${teamId}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            // You may need to include any necessary authentication headers
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error('Failed to delete team');
+        }
+    
+        // If deletion is successful, update the team data
+        updateTeamData();
+      } catch (error) {
+        console.error('Error deleting team:', error);
+      }
+    };
 
     const updateTeamData = async () => {
       try {
@@ -73,6 +96,7 @@ import {
     useEffect(() => {
       updateTeamData();
     }, []);
+    
 
     useEffect(() => {
       const fetchData = async () => {
@@ -93,6 +117,7 @@ import {
   
       fetchData();
     }, []);
+    
   
     if (loading) {
       return <p>Loading...</p>;
@@ -123,7 +148,7 @@ import {
             </div>
           </div>
           {/* Render the add team modal component */}
-          <Modal isOpen={modalOpen} setIsOpen={setModalOpen} setTeamData={updateTeamData} />
+          <Modal isOpen={modalOpen} setIsOpen={setModalOpen} setTeamData={updateTeamData}  />
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <Tabs value="all" className="w-full md:w-max">
               <TabsHeader>
@@ -166,7 +191,7 @@ import {
               </tr>
             </thead>
             <tbody>
-        {teamData.map(({ name, coach, status, created_at }, index) => {
+        {teamData.map(({ name, coach, status, created_at, id }, index) => {
           const isLast = index === teamData.length - 1;
           const classes = isLast
             ? "p-4"
@@ -220,8 +245,8 @@ import {
               </td>
               <td className={classes}>
                 <Tooltip content="Edit User">
-                  <IconButton variant="text">
-                    <PencilIcon className="h-4 w-4" />
+                  <IconButton variant="text" onClick={() => deleteTeam(id)}>
+                  <TrashIcon className="h-4 w-4" />
                   </IconButton>
                 </Tooltip>
               </td>
