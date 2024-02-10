@@ -6,8 +6,12 @@ import Home from './pages/Home';
 import About from './pages/About';
 import TournamentTeams from './components/Team'
 import ContactUs from './pages/ContactUs';
-// import RegisterPage from './pages/register';
+import LoginPage from './pages/Login';
+import RegisterPage from './pages/register';
 import TournamentPage from './pages/TournamentPage';
+import EventList from './components/EventList';
+import TeamList from './components/Team';
+import PlayerList from './components/PlayerList'
 
 const App = () => {
   return (
@@ -16,12 +20,17 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/Teams" element={<TournamentTeams />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/tournament" element={<TournamentPage />} />
-          {/* <Route path="/Register" element={<RegisterPage />} /> */}
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="about" element={<About />} />
+          <Route path="Teams" element={<TournamentTeams />} />
+          <Route path="contact" element={<ContactUs />} />
+          <Route path="tournament" element={<TournamentPage />} >
+            <Route path='event' element={<EventList /> } />
+            <Route path='Team' element={<TeamList />} />
+            <Route path='players' element={<PlayerList />} />
+          </Route>
+          <Route path="/Register" element={<RegisterPage/>}/>
+          <Route path='/Login' element={< LoginPage/>} />
         </Routes>
       </div>
     </Router>

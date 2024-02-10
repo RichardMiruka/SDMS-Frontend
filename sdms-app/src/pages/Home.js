@@ -1,6 +1,6 @@
 import React from 'react';
-import './navbar.css';
 import { Link } from 'react-router-dom';
+import EventList from '../components/EventList';
 
 const Home = () => {
   return (
@@ -13,6 +13,9 @@ const Home = () => {
       <p classname="lead">
         <Link className="btn btn-primary btn-lg" to="/tournaments" role="button">View Tournaments</Link>
       </p>
+      <EventList />
+
+
     </div>
   );
 };
