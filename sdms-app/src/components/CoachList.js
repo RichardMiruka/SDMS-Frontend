@@ -4,7 +4,7 @@ const CoachList = () => {
   const [coaches, setCoaches] = useState([]);
 
   useEffect(() => {
-    fetch('/api/coaches')  // to replace with the actual endpoint for fetching coaches from our backend API
+    fetch('http://localhost:5000/api/v1/coaches')  // to replace with the actual endpoint for fetching coaches from our backend API
       .then(response => response.json())
       .then(data => setCoaches(data))
       .catch(error => console.error('Error fetching coaches:', error));

@@ -11,9 +11,9 @@ function Sidebar() {
                 <div>Sidebar</div>
                 <ul className='flex-frow space-y-6 p-4'>
                     <li><Link to='event'>Games</Link></li>
-                    <li><Link to="">Team</Link></li>
-                    <li><Link to="">Coaches</Link></li>
-                    <li><Link to="">Players</Link></li>
+                    <li><Link to="Team">Team</Link></li>
+                    <li><Link to="coaches">Coaches</Link></li>
+                    <li><Link to="players">Players</Link></li>
                 </ul>
             </div>
       </div>

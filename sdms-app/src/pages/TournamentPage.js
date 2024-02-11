@@ -10,12 +10,7 @@ const TournamentPage = ({ numPlayers }) => {
   return (
     <div >
       <Sidebar />
-      {/* <Routes>
-        <Route path="/Tournament/events" element={<EventList />} />
-      </Routes> */}
-{/* 
-      <Outlet /> */}
-    </div>
+     </div>
   );
 };
 
