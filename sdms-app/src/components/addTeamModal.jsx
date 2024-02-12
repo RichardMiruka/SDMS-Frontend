@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
@@ -8,6 +8,29 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
   const statusRef = useRef(null);
   const messageRef = useRef(null)
   const formRef = useRef()
+  const coachRef = useRef(null);
+
+  const [coaches, setCoaches] = useState([]);
+
+  useEffect(() => {
+    const fetchCoaches = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/api/v1/coaches');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch coaches. Status: ${response.status}`);
+        }
+        const coachesData = await response.json();
+        setCoaches(coachesData);
+        console.log('Coaches Fetched:', coachesData);
+      } catch (error) {
+        console.error('Error fetching coaches:', error);
+      }
+    };
+  
+    if (isOpen) {
+      fetchCoaches();
+    }
+  }, [isOpen]);
 
   const submitFormData = async (event) => {
 	console.log('Submit button clicked!');
@@ -96,28 +119,27 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
                                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">Name of your Team <span className='text-red-500'>*</span></label>
                                         <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g. Manchester United" required ref={nameRef} />
                                     </div>
-                                    {/* <div>
-                                        <label for="email" className="block mb-2 text-sm font-medium text-gray-900">Status<span className='text-red-500'>*</span></label>
-                                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g. brian@thrivegaming.co.ke" required ref={emailRef} />
-                                    </div> */}
+                                    <div>
+                                        <label htmlFor="coach" className="block mb-2 text-sm font-medium text-gray-900"> Coach <span className="text-red-500">*</span> </label>
+                                        <select name="coach" id="coach" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required ref={coachRef}
+          >
+                                        <option value="" disabled>
+                                        Select a coach
+                                        </option>
+                                        {coaches.map((coach) => (
+                                        <option key={coach.id} value={coach.id}>
+                                            {coach.name}
+                                        </option>
+                                        ))}
+                                    </select>
+                                    </div>
                                     <div>
                                         <label for="phone" className="block mb-2 text-sm font-medium text-gray-900">Status <span className='text-red-500'>*</span></label>
                                         <input type="text" name="phone" id="phone" placeholder="e.g. Affiliated" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required ref={messageRef} />
                                     </div>
-                                    {/* <div>
-                                        <label for="message" className="block mb-2 text-sm font-medium text-gray-900">Your message <span className='text-red-500'>*</span></label>
-                                        <textarea id="message" name="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Kindly let us know what you want here..." ref={messageRef}></textarea>
-                                    </div> */}
                                     <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
                                 </form>
                                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                    {/* <button
-                                        type="button"
-                                        className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                        onClick={() => setIsOpen(false)}
-                                    >
-                                        Deactivate
-                                    </button> */}
                                     <button
                                         type="button"
                                         className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"

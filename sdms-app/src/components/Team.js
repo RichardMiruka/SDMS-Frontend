@@ -24,22 +24,7 @@ import {
   import Modal from "./addTeamModal"
 
 
-  
 
-  const TABS = [
-    {
-      label: "All",
-      value: "all",
-    },
-    {
-      label: "Monitored",
-      value: "monitored",
-    },
-    {
-      label: "Unmonitored",
-      value: "unmonitored",
-    },
-  ];
    
   const TABLE_HEAD = ["Team", "Coach", "status", "Date of registration", ""];
   const defaultTeamImg = "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
@@ -151,13 +136,6 @@ import {
           <Modal isOpen={modalOpen} setIsOpen={setModalOpen} setTeamData={updateTeamData}  />
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <Tabs value="all" className="w-full md:w-max">
-              <TabsHeader>
-                {TABS.map(({ label, value }) => (
-                  <Tab key={value} value={value}>
-                    &nbsp;&nbsp;{label}&nbsp;&nbsp;
-                  </Tab>
-                ))}
-              </TabsHeader>
             </Tabs>
             <div className="w-full md:w-72">
               <Input
