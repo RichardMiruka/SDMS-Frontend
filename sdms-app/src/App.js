@@ -12,7 +12,10 @@ import TournamentPage from './pages/TournamentPage';
 import EventList from './components/EventList';
 import TeamList from './components/Team';
 import PlayerList from './components/PlayerList'
-import CoachList from './components/CoachList'
+import CoachList from './components/CoachList';
+import EventPlayers from './components/event_players';
+import Categories from './components/categories';
+import TournamentBracket from './components/brackets';
 
 const App = () => {
   return (
@@ -26,11 +29,15 @@ const App = () => {
           <Route path="Teams" element={<TournamentTeams />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="tournament" element={<TournamentPage />} >
-            <Route path='event' element={<EventList /> } />
+            <Route path='event' element={<EventList /> } ></Route>
+            <Route path='category' element={<Categories />}/>
+            <Route path='eventplayers' element={<EventPlayers />} />
             <Route path='Team' element={<TeamList />} />
             <Route path='Coaches' element={<CoachList />} />
             <Route path='players' element={<PlayerList />} />
+            <Route path='coaches' element={<CoachList />} />
           </Route>
+          <Route path='/bracket' element={<TournamentBracket /> }/>
           <Route path="/Register" element={<RegisterPage/>}/>
           <Route path='/Login' element={< LoginPage/>} />
         </Routes>

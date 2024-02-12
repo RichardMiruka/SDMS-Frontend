@@ -5,7 +5,7 @@ const PlayerList = () => {
 
   useEffect(() => {
     
-    fetch('/api/players')  //I will have to replace with the actual endpoint(api) for fetching players
+    fetch('http://localhost:5000/api/v1/players')
       .then(response => response.json())
       .then(data => setPlayers(data))
       .catch(error => console.error('Error fetching players:', error));
@@ -14,13 +14,27 @@ const PlayerList = () => {
   return (
     <div>
       <h2>Player List</h2>
-      <ul>
-        {players.map(player => (
-          <li key={player.player_id}>
-            <strong>{player.name}</strong> - {player.position}
-          </li>
-        ))}
-      </ul>
+      
+      <table className='p-8 border border-solid'>
+        <thead className=''>
+          <tr>
+            <th className='border border-solid'>Name</th>
+            <th className='border border-solid'>Gender</th>
+            <th className='border border-solid'>Weight</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody className='border border-solid p-4'>
+          {players.map(player => (
+            <tr key={player.id} className='border border-solid'>
+              <td className='border border-solid'>{player.name}</td>
+              <th className='border border-solid'>{player.is_male ? "Male" : "Female"}</th>
+              <td className='border border-solid'>{player.Weight}</td>
+              <td>{player.age}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
