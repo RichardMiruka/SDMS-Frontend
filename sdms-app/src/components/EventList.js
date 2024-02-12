@@ -1,8 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { UserPlusIcon } from '@heroicons/react/24/solid';
+import {Button} from "@material-tailwind/react";
+import CreateEventModal from "./createEventModal";
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCreateEvent = (formData) => {
+    // Add logic to send formData to your API and handle the response
+    // For now, let's assume the response includes the newly created event
+    const newEvent = {
+      id: formData.id, // Replace with the actual ID from the response
+      name: formData.name,
+      created_at: new Date().toISOString(), // You might need to adjust this based on your API response
+    };
+
+    // Update the events state with the new event
+    setEvents((prevEvents) => [newEvent, ...prevEvents]);
+
+    closeModal();
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -16,20 +44,49 @@ const EventList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Event List</h2>
+    <div className="flex flex-col h-screen">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full p-4">
+      <Button className="flex items-center gap-3 ml-auto" size="sm" onClick={openModal}>
+        <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Create Event
+      </Button>
+      <CreateEventModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleCreateEvent} />
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Event Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Created At
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {events && events?.map(event => (
+                <tr key={event.id} class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
+                            <div>{event.name}</div>
+                        </Link>
+                    </td>
+                    <td class="px-6 py-4">
+                        <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
+                            <div>{event.created_at}</div>
+                        </Link>
+                    </td>
+                    {/* <td class="px-6 py-4 text-right">
+                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    </td> */}
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+</div>
 
-      <div>
-          {events && events?.map(event => (
-            <div key={event.id} className='p-4 border border-solid m-4'>
-                <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
-                    <div>{event.name}</div>
-                    <div>{event.created_at}</div>
-                </Link>
-            </div>
-          ))}
-        </div>
-    </div>
   );
 };
 

@@ -112,7 +112,7 @@ import {
       return <p>Error: {error}</p>;
     }
     return (
-      <Card className="h-full w-full">
+      <Card className="h-full w-full" style={{ width: '100%' }}>
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
             <div>
