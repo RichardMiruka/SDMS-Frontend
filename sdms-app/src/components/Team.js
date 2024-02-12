@@ -124,9 +124,6 @@ import {
               </Typography>
             </div>
             <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-              <Button variant="outlined" size="sm">
-                view all
-              </Button>
               <Button className="flex items-center gap-3" size="sm" onClick={handleButtonClick}>
                 <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Team
               </Button>
@@ -235,17 +232,6 @@ import {
           </table>
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-          <Typography variant="small" color="blue-gray" className="font-normal">
-            Page 1 of 10
-          </Typography>
-          <div className="flex gap-2">
-            <Button variant="outlined" size="sm">
-              Previous
-            </Button>
-            <Button variant="outlined" size="sm">
-              Next
-            </Button>
-          </div>
         </CardFooter>
       </Card>
     );
