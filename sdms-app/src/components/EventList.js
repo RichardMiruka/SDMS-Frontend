@@ -20,7 +20,7 @@ const EventList = () => {
       <h2>Event List</h2>
 
       <div>
-          {events.map(event => (
+          {events && events.map(event => (
             <div key={event.id} className='p-4 border border-solid m-4'>
                 <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
                     <div>{event.name}</div>

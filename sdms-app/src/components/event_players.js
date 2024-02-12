@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import Categories from './categories';
-// import Categories from './categories';
 
 function EventPlayers() {
     const [category, setCategory] = useState(null);
     const [eventTeam, setEventTeam] = useState(null);
-    const [femalePlayers, setFemalePlayers] = useState([]);
-    const [malePlayers, setMalePlayers] = useState([]);
     const location = useLocation();
-    const event_id = location.state.event_id;
+    const event_id = location.state?.event_id;
     
 
     useEffect(() => {
@@ -26,29 +22,6 @@ function EventPlayers() {
       .catch(error => console.error('Error fetching categories', error))
     }, []);
     
-    useEffect(() => {
-        const extractedFemalePlayers = category?.Female.flatMap(category =>
-        category.players.map(player => ({
-          categoryName: category.name,
-          name: player.name,
-          id: player.id,
-          age: player.age,
-          Weight: player.Weight,
-        }))
-      );
-      setFemalePlayers(extractedFemalePlayers);
-  
-      const extractedMalePlayers = category?.Male.flatMap(category =>
-        category.players.map(player => ({
-          name: player.name,
-          id: player.id,
-          age: player.age,
-          Weight: player.Weight,
-        }))
-      );
-      setMalePlayers(extractedMalePlayers);
-    }, []);
-    
     if (eventTeam === null || category === null) {
       return <p>Loading...</p>;
     }
@@ -57,26 +30,36 @@ function EventPlayers() {
       <div>
         <PlayerTable title="Female players" players={eventTeam.Female} />
 
-        <div>Male Categories</div>
-        <div className='flex space-x-6'>
-          {category && category?.Male.map(item => (
-            <div key={item.name}>
-              {item.name}
+        <div>Female Categories</div>
+            <div className='flex space-x-6'>
+                {category?.Female.map(item => (
+                  <div key={item.name}>
+                    <Link  to={`/bracket`} state={{ players: item.players }}>
+                          {item.name}
+                          {/* {item.players?.map(player => (
+                            <div>{player.name}</div>
+                          ))} */}
+                    </Link>
+                  </div>
+                ))}
             </div>
-          ))}
-        </div>
+
 
         <PlayerTable title="Male players" players={eventTeam.Male} />
 
-        <div>Female Categories</div>
-        <div className='flex space-x-6'>
-          {category && category?.Female.map(item => (
-            <div key={item.name}>
-              {item.name}
-            </div>
-          ))}
-        </div>
-
+          <div>Male Categories</div>
+          <div className='flex space-x-6'>
+                  {category && category?.Male.map(item => (
+                    <div key={item.name}>
+                      <Link  to={`/bracket`} state={{ players: item.players }}>
+                            {item.name}
+                            {/* {item.players?.map(player => (
+                              <div>{player.name}</div>
+                            ))} */}
+                      </Link>
+                    </div>
+                  ))}
+          </div>
       </div>
     );
   }
