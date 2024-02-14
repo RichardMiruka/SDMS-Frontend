@@ -11,7 +11,7 @@ export default function CreateEventModal({ isOpen, onClose, onAddEvent }) {
 
     const formData = {
       name: nameRef.current.value,
-      created_at: new Date().toISOString(), // You can adjust this based on your requirements
+    //   created_at: new Date().toISOString(), // You can adjust this based on your requirements
     };
 
     try {
@@ -20,7 +20,7 @@ export default function CreateEventModal({ isOpen, onClose, onAddEvent }) {
       // Clear input values
       nameRef.current.value = "";
 
-      const response = await fetch('http://127.0.0.1:5000/api/v1/event', {
+      const response = await fetch('http://127.0.0.1:5000/api/v1/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

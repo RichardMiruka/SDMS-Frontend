@@ -32,7 +32,7 @@ function EventPlayers() {
 
         <div>Female Categories</div>
             <div className='flex space-x-6'>
-                {category?.Female.map(item => (
+                {category?.Female && category?.Female.map(item => (
                   <div key={item.name}>
                     <Link  to={`/bracket`} state={{ players: item.players }}>
                           {item.name}
@@ -49,7 +49,7 @@ function EventPlayers() {
 
           <div>Male Categories</div>
           <div className='flex space-x-6'>
-                  {category && category?.Male.map(item => (
+                  {category?.Male && category?.Male.map(item => (
                     <div key={item.name}>
                       <Link  to={`/bracket`} state={{ players: item.players }}>
                             {item.name}

@@ -25,7 +25,7 @@ const LoginPage = ({ onLogin }) => {
     localStorage.setItem("token",data['access_token'])
     setMessage(data.message)
     setTimeout(() => {
-      navigate('/')
+      navigate('/tournament')
     }, [2000])
   }
   else{

@@ -26,20 +26,22 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="about" element={<About />} />
+          <Route path="home" element={<Home />} />
           <Route path="Teams" element={<TournamentTeams />} />
           <Route path="contact" element={<ContactUs />} />
+          <Route path="events" element={<EventList />} />
           <Route path="tournament" element={<TournamentPage />} >
-            <Route path='event' element={<EventList /> } ></Route>
-            <Route path='category' element={<Categories />}/>
+            <Route path='event' element={<EventList />} ></Route>
+            <Route path='category' element={<Categories />} />
             <Route path='eventplayers' element={<EventPlayers />} />
             <Route path='Team' element={<TeamList />} />
             <Route path='Coaches' element={<CoachList />} />
             <Route path='players' element={<PlayerList />} />
             <Route path='coaches' element={<CoachList />} />
           </Route>
-          <Route path='/bracket' element={<TournamentBracket /> }/>
-          <Route path="/Register" element={<RegisterPage/>}/>
-          <Route path='/Login' element={< LoginPage/>} />
+          <Route path='/bracket' element={<TournamentBracket />} />
+          <Route path="/Register" element={<RegisterPage />} />
+          <Route path='/Login' element={< LoginPage />} />
         </Routes>
       </div>
     </Router>
