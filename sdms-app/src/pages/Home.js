@@ -86,7 +86,7 @@ const Home = () => {
         </p>
         <br>
         </br>
-        <h1 className="text-3xl lg:text-4xl font-bold leading-9 pb-4">Our Project Repository</h1>
+        <h2 className="text-3xl lg:text-4xl font-bold leading-9 pb-4">Our Project Repository</h2>
         <div className="flex mt-2">
                 <a href="https://github.com/RichardMiruka/SDMS-Frontend" target="_blank" rel="noopener noreferrer">
                   <FontAwesomeIcon icon={faGithub} size="2x" />
