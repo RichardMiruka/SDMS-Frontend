@@ -1,5 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
+import {
+    MagnifyingGlassIcon,
+    ChevronUpDownIcon,
+  } from "@heroicons/react/24/outline";
+  import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+  import {
+    Card,
+    CardHeader,
+    Input,
+    Typography,
+    Button,
+    CardBody,
+    Chip,
+    CardFooter,
+    Tabs,
+    TabsHeader,
+    Tab,
+    Avatar,
+    IconButton,
+    Tooltip,
+  } from "@material-tailwind/react";
 
 
 
@@ -57,6 +79,7 @@ const Dashboard = () => {
   const last8Tournaments = tournaments.slice(-8);
   const last5Draws = draws.slice(-5)
   return (
+    <div>
     <div className="min-h-screen flex flex-col gap-4 items-stretch justify-center ">
 		<div className='flex items-center p-4'>
 			<div className='w-1/2 p-4 border-r min-h-screen flex items-start'>
@@ -99,6 +122,9 @@ const Dashboard = () => {
 	</div>
   
         
+    </div>
+      
+
     </div>
   );
 };
