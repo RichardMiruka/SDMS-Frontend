@@ -44,7 +44,7 @@ const EventList = () => {
   }, []);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full mx-40">
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full p-4">
       <Button className="flex items-center gap-3 ml-auto" size="sm" onClick={openModal}>
         <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Create Event

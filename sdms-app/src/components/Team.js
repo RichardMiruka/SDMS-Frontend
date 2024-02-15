@@ -123,7 +123,7 @@ export function TeamList() {
               See information about all Teams
             </Typography>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row mr-40">
             <Button className="flex items-center gap-3" size="sm" onClick={handleButtonClick}>
               <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Team
             </Button>
@@ -142,7 +142,7 @@ export function TeamList() {
           </div>
         </div>
       </CardHeader>
-      <CardBody className="overflow-scroll px-0">
+      <CardBody className="overflow-scroll px-0 mx-40">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
