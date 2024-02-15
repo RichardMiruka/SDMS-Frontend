@@ -17,6 +17,7 @@ import EventPlayers from './components/event_players';
 import Categories from './components/categories';
 import TournamentBracket from './components/brackets';
 
+
 const App = () => {
   return (
     <Router>
@@ -37,7 +38,9 @@ const App = () => {
             <Route path='Team' element={<TeamList />} />
             <Route path='Coaches' element={<CoachList />} />
             <Route path='players' element={<PlayerList />} />
+
             <Route path='coaches' element={<CoachList />} />
+
           </Route>
           <Route path='/bracket' element={<TournamentBracket />} />
           <Route path="/Register" element={<RegisterPage />} />
