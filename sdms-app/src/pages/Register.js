@@ -46,7 +46,7 @@ const RegisterPage = ({ onLogin }) => {
   }
   );
   const data=await response.json()
-  localStorage.setItem('userData', JSON.stringify(data));
+  localStorage.setItem('authTokens', JSON.stringify(data));
   if (response.ok){
     setMessage(data.message)
     setError('')
@@ -121,14 +121,8 @@ const RegisterPage = ({ onLogin }) => {
       setErrMsg('paswords do not match');
       setPassword("");
       setConPassword("");
-      // setMessage('form formitted successfully');
-      // setIsSubmitted(true);
-      // setTimeout(()=>{
-      //   window.location.reload();
-      // }, [3000])
     } else if (password && conPassword && password === conPassword) {
       handleRegister();
-      // setMessage('form formitted successfully');
       resetState();
     }
   };

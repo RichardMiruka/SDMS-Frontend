@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom'
+import { useAuth } from "../hooks/useAuth";
 
 const LoginPage = ({ onLogin }) => {
   const pwdRef = useRef(null);
@@ -8,6 +9,8 @@ const LoginPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('')
   const [error, setError]= useState('');
+
+  const { login } = useAuth();
 
   const navigate=useNavigate()
   const handleLogin=async(e)=>{
@@ -22,10 +25,12 @@ const LoginPage = ({ onLogin }) => {
   );
   const data=await response.json()
   if (response.ok){
-    localStorage.setItem("token",data['access_token'])
+
+    await login({ email })
+    // localStorage.setItem("authTokens", JSON.stringify(data))
     setMessage(data.message)
     setTimeout(() => {
-      navigate('/')
+      navigate('/tournament')
     }, [2000])
   }
   else{

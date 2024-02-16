@@ -7,7 +7,6 @@ import About from './pages/About';
 import TournamentTeams from './components/Team'
 import ContactUs from './pages/ContactUs';
 import LoginPage from './pages/Login';
-import RegisterPage from './pages/register';
 import TournamentPage from './pages/TournamentPage';
 import EventList from './components/EventList';
 import TeamList from './components/Team';
@@ -16,6 +15,9 @@ import CoachList from './components/CoachList';
 import EventPlayers from './components/event_players';
 import Categories from './components/categories';
 import TournamentBracket from './components/brackets';
+import RegisterPage from './pages/Register';
+
+import { ProtectedRoute } from './components/ProtectedRoute';
 
 const App = () => {
   return (
