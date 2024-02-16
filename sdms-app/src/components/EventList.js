@@ -36,8 +36,10 @@ const EventList = () => {
     const token = localStorage.getItem('token');
     const header = {
       'Authorization': `Bearer ${token}`
+
     }
     fetch('http://localhost:5000/api/v1/events', {headers: header})
+
       .then(response => response.json())
       .then(data => setEvents(data))
       .catch(error => console.error('Error fetching events:', error));
@@ -91,3 +93,4 @@ const EventList = () => {
 };
 
 export default EventList;
+

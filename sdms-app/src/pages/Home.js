@@ -7,6 +7,7 @@ import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 const Home = () => {
   return (
     <div>
+
     <section className="bg-black text-white py-20">
       <div className="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
         <div className="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
@@ -149,6 +150,7 @@ const Home = () => {
 </section>
   </div>
   
+
   );
 };
 
