@@ -23,10 +23,10 @@ const Home = () => {
               <img width="300" height="400" className="inline-block mt-24 hidden xl:block" src="/images/pexels-photo1.png" alt="Image 1" />
             </div>
             <div>
-              <img width="300" height="400" className="inline-block mt-24 md:mt-0 p-8 md:p-0" src="/images/pexels-photo2.png" alt="Image 2" />
+              <img width="400" height="500" className="inline-block mt-24 md:mt-0 p-8 md:p-0" src="/images/tennis.png" alt="Image 2" />
             </div>
             <div>
-              <img width="300" height="400" className="inline-block mt-24 hidden lg:block" src="/images/pexels-photo3.png" alt="Image 3" />
+              <img width="300" height="400" className="inline-block mt-24 hidden lg:block" src="/images/volleyball.png" alt="Image 3" />
             </div>
           </div>
         </div>
