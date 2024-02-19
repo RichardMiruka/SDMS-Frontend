@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-700 fixed bottom-0 left-0 right-0" aria-labelledby="footer-heading">
+    <footer className="bg-gray-700" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">Footer</h2>
 
       <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-16">
