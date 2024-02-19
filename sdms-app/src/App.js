@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/footer';
 import Dashboard from './pages/dashboard';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -31,6 +32,9 @@ const App = () => {
           <Route path="Teams" element={<TournamentTeams />} />
           <Route path="contact" element={<ContactUs />} />
           <Route path="events" element={<EventList />} />
+          <Route path='Coaches' element={<CoachList />} />
+          <Route path='players' element={<PlayerList />} />
+          <Route path="/Register" element={<RegisterPage />} />
           <Route path="tournament" element={<TournamentPage />} >
             <Route path='event' element={<EventList />} ></Route>
             <Route path='category' element={<Categories />} />
@@ -46,6 +50,7 @@ const App = () => {
           <Route path="/Register" element={<RegisterPage />} />
           <Route path='/Login' element={< LoginPage />} />
         </Routes>
+        <Footer />
       </div>
     </Router>
   );

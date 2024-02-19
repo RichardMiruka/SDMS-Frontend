@@ -75,7 +75,7 @@ const Navbar = () => {
       <Link to="Teams" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Teams</Link>
     </li>
     <li>
-      <Link to="/coaches" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Coaches</Link>
+      <Link to="/Coaches" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Coaches</Link>
     </li>
     <li>
       <Link to="/players" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Players</Link>

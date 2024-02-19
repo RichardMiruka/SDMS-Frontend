@@ -127,7 +127,7 @@ export function TeamList() {
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row mr-40">
-            <Button className="flex items-center gap-3" size="sm" onClick={handleButtonClick}>
+            <Button className="flex items-center gap-3 bg-blue-500 hover:bg-blue-600" size="sm" onClick={handleButtonClick}>
               <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add Team
             </Button>
           </div>
@@ -137,15 +137,9 @@ export function TeamList() {
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <Tabs value="all" className="w-full md:w-max">
           </Tabs>
-          <div className="w-full md:w-72">
-            <Input
-              label="Search"
-              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
-            />
-          </div>
         </div>
       </CardHeader>
-      <CardBody className="overflow-scroll px-0 mx-40">
+      <CardBody className="overflow-hidden px-0 mx-40">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
