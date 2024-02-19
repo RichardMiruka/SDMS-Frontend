@@ -13,8 +13,8 @@ const Home = () => {
           <h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">SDMS</h1>
           <h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Sports: The Endless Infinity</h2>
           <p className="text-sm md:text-base text-gray-50 mb-4">Create and Explore your favorite tournaments. register now to showcase talent to the World</p>
-          <Link to="#" className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
-            Explore Now
+          <Link to="/Register" className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
+            Sign up
           </Link>
         </div>
         <div className="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center">
