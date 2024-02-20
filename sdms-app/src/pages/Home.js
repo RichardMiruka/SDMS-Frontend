@@ -18,7 +18,7 @@ const Home = () => {
               Sign up
             </Link>
             <p className="mt-6 font-light text-lg max-w-md text-gray-50">Already have an account?</p>
-            <Link to="/Login" className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">Log In
+            <Link to="/Login" className="bg-transparent hover:bg-yellow-400 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">Log In
             </Link>
           </div>
           <div className="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center">
@@ -39,7 +39,7 @@ const Home = () => {
       <section className="p-4 md:p-12 bg-black text-white py-20 flex items-center justify-center">
         <div className="flex flex-wrap mx-auto md:flex-nowrap">
 
-          <a href="#" className="w-full md:w-80 m-1">
+          <a href="Tournament" className="w-full md:w-80 m-1">
             <div className="relative flex flex-col items-start transition duration-300 ease-in-out delay-150 transform bg-white shadow-2xl rounded-xl md:-ml-16 md:hover:-translate-x-16 md:hover:-translate-y-8">
               <img className="w-full rounded-t-xl lg:h-48 md:h-36 object-cover object-center" src="/images/scoreboard.jpg" alt="blog" />
               <div className="px-6 py-8">
@@ -51,7 +51,7 @@ const Home = () => {
             </div>
           </a>
 
-          <a href="#" className="w-full md:w-80 m-1">
+          <a href="Tournament" className="w-full md:w-80 m-1">
             <div className="relative flex flex-col items-start transition duration-300 ease-in-out delay-150 transform bg-white shadow-2xl rounded-xl md:-ml-16 md:hover:-translate-x-16 md:hover:-translate-y-8">
               <img className="w-full rounded-t-xl lg:h-48 md:h-36 object-cover object-center" src="/images/Tournament Brackets.jpg" alt="blog" />
               <div className="px-6 py-8">
@@ -63,7 +63,7 @@ const Home = () => {
             </div>
           </a>
 
-          <a href="#" className="w-full md:w-80 m-1">
+          <a href="Tournament" className="w-full md:w-80 m-1">
             <div className="relative flex flex-col items-start transition duration-300 ease-in-out delay-150 transform bg-white shadow-2xl rounded-xl md:-ml-16 md:hover:-translate-x-16 md:hover:-translate-y-8">
               <img className="w-full rounded-t-xl lg:h-48 md:h-36 object-cover object-center" src="/images/pngwing.com.png" alt="blog" />
               <div className="px-6 py-8">
