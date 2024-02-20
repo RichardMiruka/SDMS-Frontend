@@ -17,9 +17,6 @@ const Home = () => {
             <Link to="/Register" className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
               Sign up
             </Link>
-            <p className="mt-6 font-light text-lg max-w-md text-gray-50">Already have an account?</p>
-            <Link to="/Login" className="bg-transparent hover:bg-yellow-400 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">Log In
-            </Link>
           </div>
           <div className="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3 justify-center">
             <div className="h-48 flex content-center items-center">
