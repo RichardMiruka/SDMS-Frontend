@@ -50,7 +50,7 @@ const RegisterPage = ({ onLogin }) => {
   if (response.ok){
     setMessage(data.message)
     setError('')
-    // navigate('/login')
+     navigate('/login')
   }
   else{
     setError(data.error)
