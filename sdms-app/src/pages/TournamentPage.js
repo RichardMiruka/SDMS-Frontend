@@ -9,7 +9,7 @@ const TournamentPage = ({ numPlayers }) => {
 
   return (
     <div >
-      <Sidebar />
+      {/* <Sidebar /> */}
      </div>
   );
 };
