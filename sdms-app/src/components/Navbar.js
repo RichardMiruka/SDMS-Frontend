@@ -1,4 +1,3 @@
-// import React from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -36,7 +35,7 @@ const Navbar = () => {
             className="text-lg font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8"
             href="/home"
           >
-            SDMS
+            Home
           </a>
           <button
             className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
