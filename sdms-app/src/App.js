@@ -8,7 +8,7 @@ import About from './pages/About';
 import TournamentTeams from './components/Team'
 import ContactUs from './pages/ContactUs';
 import LoginPage from './pages/Login';
-import RegisterPage from './pages/register';
+import RegisterPage from './pages/Register';
 import TournamentPage from './pages/TournamentPage';
 import EventList from './components/EventList';
 import TeamList from './components/Team';
