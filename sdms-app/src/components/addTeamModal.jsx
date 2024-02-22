@@ -40,6 +40,7 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
 	const formData = {
 		name: nameRef.current.value,
 		status: messageRef.current.value,
+    coachId: coachRef.current.value,
 	  };
 
 	  try {
@@ -48,6 +49,7 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
 		// Clear input values
 		nameRef.current.value = "";
 		messageRef.current.value = "";
+    coachRef.current.value = "";
   
 		  const response = await fetch('http://127.0.0.1:5000/api/v1/teams', {
 			method: 'POST',

@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import {
+    Card,
+    CardHeader,
+    Typography,
+    CardBody
+  } from "@material-tailwind/react";
 
 const PlayerList = () => {
   const [players, setPlayers] = useState([]);
@@ -12,38 +18,104 @@ const PlayerList = () => {
   }, []);
 
   return (
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <h2 class="text-2xl font-semibold mb-4">Player List</h2>
-    
-    <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400 border border-solid p-4">
-        <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="border border-solid px-6 py-3">
-                    Name
-                </th>
-                <th scope="col" class="border border-solid px-6 py-3">
-                    Gender
-                </th>
-                <th scope="col" class="border border-solid px-6 py-3">
-                    Weight
-                </th>
-                <th scope="col" class="border border-solid px-6 py-3">
-                    Age
-                </th>
+    <Card className="flex flex-col min-h-screen bg-gray-800 text-white" style={{ width: '100%' }}>
+  <CardHeader floated={false} shadow={false} className="rounded-none bg-gray-800 text-white">
+    <div className="mb-8 flex items-center justify-between gap-8 ml-0">
+      <div>
+        <Typography variant="h5" color="blue-gray">
+          Player List
+        </Typography>
+        <Typography color="white" className="mt-1 font-normal">
+          Players and their Details
+        </Typography>
+      </div>
+    </div>
+  </CardHeader>
+  <CardBody className="overflow-hidden px-0 mx-40">
+    <table className="mt-4 w-full min-w-max table-auto text-left shadow-md">
+      <thead>
+        <tr>
+          <th
+            className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
+          >
+            <Typography
+              variant="small"
+              color="blue-gray"
+              className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+            >
+              Name
+            </Typography>
+          </th>
+          <th
+            className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
+          >
+            <Typography
+              variant="small"
+              color="blue-gray"
+              className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+            >
+              Gender
+            </Typography>
+          </th>
+          <th
+            className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
+          >
+            <Typography
+              variant="small"
+              color="blue-gray"
+              className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+            >
+              Weight
+            </Typography>
+          </th>
+          <th
+            className="cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
+          >
+            <Typography
+              variant="small"
+              color="blue-gray"
+              className="flex items-center justify-between gap-2 font-normal leading-none opacity-70"
+            >
+              Age
+            </Typography>
+          </th>
+        </tr>
+      </thead>
+      <tbody className="shadow-md">
+        {players.map(({ name, is_male, Weight, age, id }, index) => {
+          const isLast = index === players.length - 1;
+          const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
+
+          return (
+            <tr key={name}>
+              <td className={classes}>
+                <Typography variant="small" color="blue-gray" className="font-normal">
+                  {name}
+                </Typography>
+              </td>
+              <td className={classes}>
+                <Typography variant="small" color="blue-gray" className="font-normal">
+                  {is_male ? "Male" : "Female"}
+                </Typography>
+              </td>
+              <td className={classes}>
+                <Typography variant="small" color="blue-gray" className="font-normal">
+                  {Weight}
+                </Typography>
+              </td>
+              <td className={classes}>
+                <Typography variant="small" color="blue-gray" className="font-normal">
+                  {age}
+                </Typography>
+              </td>
             </tr>
-        </thead>
-        <tbody>
-            {players.map(player => (
-                <tr key={player.id} class="border border-solid">
-                    <td class="border border-solid px-6 py-3">{player.name}</td>
-                    <td class="border border-solid px-6 py-3">{player.is_male ? "Male" : "Female"}</td>
-                    <td class="border border-solid px-6 py-3">{player.Weight}</td>
-                    <td class="border border-solid px-6 py-3">{player.age}</td>
-                </tr>
-            ))}
-        </tbody>
+          );
+        })}
+      </tbody>
     </table>
-</div>
+  </CardBody>
+</Card>
+
 
 
   );

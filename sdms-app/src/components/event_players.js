@@ -27,7 +27,7 @@ function EventPlayers() {
     }
   
     return (
-      <div>
+      <div className='flex flex-col min-h-screen'>
         <PlayerTable title="Female players" players={eventTeam.Female} />
 
         <div>Female Categories</div>

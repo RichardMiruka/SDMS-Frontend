@@ -112,15 +112,15 @@ export function TeamList() {
     return <p>Error: {error}</p>;
   }
   return (
-    <Card className="h-full w-full" style={{ width: '100%' }}>
-      <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-8 flex items-center justify-between gap-8">
+    <Card className="flex flex-col min-h-screen bg-gray-800 text-white" style={{ width: '100%' }}>
+      <CardHeader floated={false} shadow={false} className="rounded-none bg-gray-800 text-white">
+        <div className=" mb-8 flex items-center justify-between gap-8 ml-0">
           <div>
             <Typography variant="h5" color="blue-gray">
               Team list
             </Typography>
             <Typography color="gray" className="mt-1 font-normal">
-              See information about all Teams
+              Teams and their Coaches
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row mr-40">
@@ -137,7 +137,7 @@ export function TeamList() {
         </div>
       </CardHeader>
       <CardBody className="overflow-hidden px-0 mx-40">
-        <table className="mt-4 w-full min-w-max table-auto text-left">
+        <table className="mt-4 w-full min-w-max table-auto text-left shadow-md">
           <thead>
             <tr>
               {TABLE_HEAD.map((head, index) => (
@@ -159,7 +159,7 @@ export function TeamList() {
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className='shadow-md'>
             {teamData.map(({ name, coach, status, created_at, id }, index) => {
               const isLast = index === teamData.length - 1;
               const classes = isLast
@@ -213,7 +213,7 @@ export function TeamList() {
                     </Typography>
                   </td>
                   <td className={classes}>
-                    <Tooltip content="Edit User">
+                    <Tooltip content="Delete Team">
                       <IconButton variant="text" onClick={() => deleteTeam(id)}>
                         <TrashIcon className="h-4 w-4" />
                       </IconButton>
@@ -225,7 +225,7 @@ export function TeamList() {
           </tbody>
         </table>
       </CardBody>
-      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+      <CardFooter className="flex items-center justify-between border-blue-gray-50 p-4">
       </CardFooter>
     </Card>
   );

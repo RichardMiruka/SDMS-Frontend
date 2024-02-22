@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { UserPlusIcon } from '@heroicons/react/24/solid';
-import {Button} from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import CreateEventModal from "./createEventModal";
 
 const EventList = () => {
@@ -37,55 +37,56 @@ const EventList = () => {
     const header = {
       'Authorization': `Bearer ${token}`
     }
-    fetch('http://localhost:5000/api/v1/events', {headers: header})
+    fetch('http://localhost:5000/api/v1/events', { headers: header })
       .then(response => response.json())
       .then(data => setEvents(data))
       .catch(error => console.error('Error fetching events:', error));
   }, []);
 
   return (
-    <div className="flex flex-col h-full mx-40">
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full p-4">
-      <Button className="flex items-center gap-3 ml-auto bg-blue-500 hover:bg-blue-600" size="sm" onClick={openModal}>
-        <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Create Event
-      </Button>
-      <CreateEventModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleCreateEvent} />
-    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className="flex flex-col min-h-screen bg-gray-800 text-white">
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full p-4">
+        <Button className="flex items-center gap-3 ml-auto bg-blue-500 hover:bg-blue-600" size="sm" onClick={openModal}>
+          <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Create Event
+        </Button>
+        <CreateEventModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleCreateEvent} />
+        <table className="mx-auto w-3/4 w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    Event Name
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    Created At
-                </th>
-                <th scope="col" className="px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                </th>
+              <th scope="col" className="px-6 py-3">
+                Event Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Created At
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="sr-only">Edit</span>
+              </th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {events && events?.map(event => (
-                <tr key={event.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
-                            <div>{event.name}</div>
-                        </Link>
-                    </td>
-                    <td className="px-6 py-4">
-                        <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
-                            <div>{event.created_at}</div>
-                        </Link>
-                    </td>
-                    {/* <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    </td> */}
-                </tr>
+              <tr key={event.id} className="bg-blue-gray-50/50 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-blue-gray-50 dark:hover:bg-gray-600">
+                <td className="px-6 py-4 font-medium text-blue-gray-900 whitespace-nowrap dark:text-white">
+                  <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
+                    <div>{event.name}</div>
+                  </Link>
+                </td>
+                <td className="px-6 py-4">
+                  <Link to={`/tournament/eventplayers`} state={{ event_id: event.id }}>
+                    <div>{event.created_at}</div>
+                  </Link>
+                </td>
+                {/* <td className="px-6 py-4 text-right">
+                            <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        </td> */}
+              </tr>
             ))}
-        </tbody>
-    </table>
-</div>
-</div>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
 
   );
 };
