@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/footer';
 import Dashboard from './pages/dashboard';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -36,12 +37,13 @@ const App = () => {
             <Route path='category' element={<Categories />}/>
             <Route path='eventplayers' element={<EventPlayers />} />
             <Route path='Team' element={<TeamList />} />
+            <Route path='Coaches' element={<CoachList />} />
             <Route path='players' element={<PlayerList />} />
             <Route path='coaches' element={<CoachList />} />
           </Route>
-          <Route path='/bracket' element={<TournamentBracket /> }/>
-          <Route path="/Register" element={<RegisterPage/>}/>
-          <Route path='/Login' element={< LoginPage/>} />
+          <Route path='/bracket' element={<TournamentBracket />} />
+          <Route path="/Register" element={<RegisterPage />} />
+          <Route path='/Login' element={< LoginPage />} />
         </Routes>
       </AuthProvider>
     </Router>

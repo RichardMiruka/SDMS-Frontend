@@ -26,7 +26,7 @@ function EventPlayers() {
     }
   
     return (
-      <div>
+      <div className='flex flex-col min-h-screen'>
         <PlayerTable title="Female players" players={eventTeam.Female} />
 
         {(category?.Female).length > 0 &&  <div>Female Categories</div>}

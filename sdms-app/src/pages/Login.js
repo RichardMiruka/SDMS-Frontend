@@ -12,7 +12,6 @@ const LoginPage = ({ onLogin }) => {
 
   const { login } = useAuth();
 
-  // const navigate=useNavigate()
   const handleLogin=async(e)=>{
     e.preventDefault();
     try { const response=await fetch('http://127.0.0.1:5000/api/v1/login',{
@@ -27,10 +26,8 @@ const LoginPage = ({ onLogin }) => {
   if (response.ok){
 
     await login(data)
-    // localStorage.setItem("authTokens", JSON.stringify(data))
     setMessage(data.message)
     setTimeout(() => {
-      // navigate('/tournament')
     }, [2000])
   }
   else{
