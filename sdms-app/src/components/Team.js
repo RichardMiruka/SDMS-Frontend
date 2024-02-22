@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
+import customFetcher from '../utils/fetchInstance';
 import {
     MagnifyingGlassIcon,
     ChevronUpDownIcon,
@@ -41,66 +42,76 @@ import {
       setModalOpen(true);
     };
 
-    const deleteTeam = async (teamId) => {
-      try {
-        const response = await fetch(`http://127.0.0.1:5000/api/v1/teams/${teamId}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            // You may need to include any necessary authentication headers
-          },
-        });
-    
-        if (!response.ok) {
-          throw new Error('Failed to delete team');
-        }
-    
-        // If deletion is successful, update the team data
-        updateTeamData();
-      } catch (error) {
-        console.error('Error deleting team:', error);
-      }
-    };
+    const deleteTeam = function (teamId) {
+      customFetcher(`http://127.0.0.1:5000/api/v1/teams/${teamId}`,  {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            })
+          .then(()=> updateTeamData())
+          .catch(error => console.error('Error deleting team:', error))  
+    }
 
-    const updateTeamData = async () => {
-      try {
-        const response = await fetch('http://127.0.0.1:5000/api/v1/teams');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
+    // const deleteTeam = async (teamId) => {
+    //   try {
+    //     const response = await fetch(`http://127.0.0.1:5000/api/v1/teams/${teamId}`, {
+    //       method: 'DELETE',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         // You may need to include any necessary authentication headers
+    //       },
+    //     });
+    
+    //     if (!response.ok) {
+    //       throw new Error('Failed to delete team');
+    //     }
+    
+    //     // If deletion is successful, update the team data
+    //     updateTeamData();
+    //   } catch (error) {
+    //     console.error('Error deleting team:', error);
+    //   }
+    // };
+
+  const updateTeamData = function () {
+    customFetcher('http://127.0.0.1:5000/api/v1/teams')
+        .then(({ data })=>  setTeamData(data))
+        .catch(error => setError(error.message))
+        .finally(() => setLoading(false));
+
+  }
   
-        const data = await response.json();
-        setTeamData(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+
+    // const updateTeamData = async () => {
+    //   try {
+    //     const response = await fetch('http://127.0.0.1:5000/api/v1/teams');
+    //     if (!response.ok) {
+    //       throw new Error('Failed to fetch data');
+    //     }
+  
+    //     const data = await response.json();
+    //     setTeamData(data);
+    //   } catch (error) {
+    //     setError(error.message);
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // };
   
     useEffect(() => {
       updateTeamData();
     }, []);
     
+    console.log(teamData)
 
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://127.0.0.1:5000/api/v1/teams');
-          if (!response.ok) {
-            throw new Error('Failed to fetch data');
-          }
-  
-          const data = await response.json();
-          setTeamData(data);
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
+
+      customFetcher('http://127.0.0.1:5000/api/v1/teams')
+        .then(({ data })=>  setTeamData(data))
+        .catch(error => setError(error.message))
+        .finally(() => setLoading(false));
+
     }, []);
     
   

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import customFetcher from '../utils/fetchInstance';
 
 const PlayerList = () => {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     
-    fetch('http://localhost:5000/api/v1/players')
-      .then(response => response.json())
-      .then(data => setPlayers(data))
+    customFetcher('http://localhost:5000/api/v1/players')
+      .then(({ data })=> setPlayers(data))
       .catch(error => console.error('Error fetching players:', error));
   }, []);
 

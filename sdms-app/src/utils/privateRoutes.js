@@ -1,18 +1,11 @@
-import React from 'react';
-import { Route, useNavigate, Navigate } from 'react-router-dom';
-import { useAuth } from './authContext';
+import { Navigate } from "react-router-dom";
+import { useAuth } from "./authContext";
 
-const PrivateRoute = ({ path, element: Element }) => {
-  const { isAuthenticated, redirectPath } = useAuth();
-  const navigate = useNavigate();
-
-  if (isAuthenticated) {
-    // If not authenticated, set the redirect path and navigate to login
-    // The redirect path will be stored in the AuthContext during login
-    return <Navigate to={`/login?redirect=${encodeURIComponent(path)}`} />;
+export const PrivateRoute = ({ children }) => {
+  const { user } = useAuth();
+  if (!user) {
+    // user is not authenticated
+    return <Navigate to="/Login" />;
   }
-
-  return <Route path={path} element={<Element />} />;
+  return children;
 };
-
-export default PrivateRoute;

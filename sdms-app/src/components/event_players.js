@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import customFetcher from '../utils/fetchInstance';
 
 function EventPlayers() {
     const [category, setCategory] = useState(null);
@@ -9,16 +10,14 @@ function EventPlayers() {
     
 
     useEffect(() => {
-      fetch(`http://127.0.0.1:5000/api/v1/events/${event_id}/players`)
-        .then(response => response.json())
-        .then(data => setEventTeam(data))
+      customFetcher(`http://127.0.0.1:5000/api/v1/events/${event_id}/players`)
+        .then(({data}) => setEventTeam(data))
         .catch(error => console.error('Error fetching teams:', error));
     }, []);
 
     useEffect(() => {
-      fetch(`http://127.0.0.1:5000/api/v1/events/${event_id}/category_players`)
-      .then(response => response.json())
-      .then(data => setCategory(data))
+      customFetcher(`http://127.0.0.1:5000/api/v1/events/${event_id}/category_players`)
+      .then(({ data }) => setCategory(data))
       .catch(error => console.error('Error fetching categories', error))
     }, []);
     
@@ -30,7 +29,7 @@ function EventPlayers() {
       <div>
         <PlayerTable title="Female players" players={eventTeam.Female} />
 
-        <div>Female Categories</div>
+        {(category?.Female).length > 0 &&  <div>Female Categories</div>}
             <div className='flex space-x-6'>
                 {category?.Female && category?.Female.map(item => (
                   <div key={item.name}>
@@ -47,7 +46,7 @@ function EventPlayers() {
 
         <PlayerTable title="Male players" players={eventTeam.Male} />
 
-          <div>Male Categories</div>
+        {(category?.Male).length > 0 &&  <div>Male Categories</div>}
           <div className='flex space-x-6'>
                   {category?.Male && category?.Male.map(item => (
                     <div key={item.name}>

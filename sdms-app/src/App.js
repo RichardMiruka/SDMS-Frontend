@@ -16,22 +16,23 @@ import EventPlayers from './components/event_players';
 import Categories from './components/categories';
 import TournamentBracket from './components/brackets';
 import RegisterPage from './pages/Register';
-
+import { AuthProvider } from './hooks/useAuth';
 import { ProtectedRoute } from './components/ProtectedRoute';
+
 
 const App = () => {
   return (
     <Router>
-      <div>
+       <AuthProvider>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="about" element={<About />} />
+          <Route path="about" element={<ProtectedRoute><About /></ProtectedRoute>} />
           <Route path="Teams" element={<TournamentTeams />} />
           <Route path="contact" element={<ContactUs />} />
-          <Route path="tournament" element={<TournamentPage />} >
-            <Route path='event' element={<EventList /> } ></Route>
+          <Route path="tournament" element={<ProtectedRoute><TournamentPage /></ProtectedRoute>} >
+            <Route path='event' element={<EventList /> } />
             <Route path='category' element={<Categories />}/>
             <Route path='eventplayers' element={<EventPlayers />} />
             <Route path='Team' element={<TeamList />} />
@@ -42,7 +43,7 @@ const App = () => {
           <Route path="/Register" element={<RegisterPage/>}/>
           <Route path='/Login' element={< LoginPage/>} />
         </Routes>
-      </div>
+      </AuthProvider>
     </Router>
   );
 };

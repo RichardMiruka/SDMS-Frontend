@@ -6,14 +6,8 @@ const EventList = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('authTokens'));
-    console.log(token.access_token)
-    const header = {
-      'Authorization': `Bearer ${token.access_token}`
-    }
-    customFetcher('http://localhost:5000/api/v1/events', {headers: header})
-      .then(response => response.json())
-      .then(data => setEvents(data))
+    customFetcher('http://localhost:5000/api/v1/events')
+      .then(({ data }) => setEvents(data))
       .catch(error => console.error('Error fetching events:', error));
   }, []);
 
