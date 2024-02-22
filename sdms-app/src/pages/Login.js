@@ -12,6 +12,8 @@ const LoginPage = ({ onLogin }) => {
 
   const { login } = useAuth();
 
+  const navigate = useNavigate();
+
   const handleLogin=async(e)=>{
     e.preventDefault();
     try { const response=await fetch('http://127.0.0.1:5000/api/v1/login',{
@@ -27,6 +29,12 @@ const LoginPage = ({ onLogin }) => {
 
     await login(data)
     setMessage(data.message)
+
+    const intendedDestination = sessionStorage.getItem('intendedDestination') || '/';
+    navigate(intendedDestination);
+
+    sessionStorage.removeItem('intendedDestination');
+
     setTimeout(() => {
     }, [2000])
   }

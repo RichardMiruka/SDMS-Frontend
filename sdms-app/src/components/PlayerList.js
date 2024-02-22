@@ -82,7 +82,7 @@ const PlayerList = () => {
         </tr>
       </thead>
       <tbody className="shadow-md">
-        {players.map(({ name, is_male, Weight, age, id }, index) => {
+        {players.length > 1 && players.map(({ name, is_male, Weight, age, id }, index) => {
           const isLast = index === players.length - 1;
           const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 

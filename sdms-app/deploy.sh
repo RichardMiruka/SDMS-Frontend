@@ -1,4 +1,4 @@
-echo "seitching to master"
+echo "switching to master"
 git checkout main
 
 echo "Building app..."

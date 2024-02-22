@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import customFetcher from '../utils/fetchInstance';
 import { faHourglass1 } from '@fortawesome/free-solid-svg-icons';
 import {
   MagnifyingGlassIcon,
@@ -70,8 +71,6 @@ export function TeamList() {
       .then(({ data })=>  setTeamData(data))
       .catch(error => setError(error.message))
       .finally(() => setLoading(false));
-    
-      fetchData();
 
   }, []);
 
@@ -132,7 +131,7 @@ export function TeamList() {
             </tr>
           </thead>
           <tbody className='shadow-md'>
-            {teamData.map(({ name, coach, status, created_at, id }, index) => {
+            {teamData.length > 1 && teamData.map(({ name, coach, status, created_at, id }, index) => {
               const isLast = index === teamData.length - 1;
               const classes = isLast
                 ? "p-4"

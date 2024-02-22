@@ -1,11 +1,14 @@
-// import React from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [tournamentOpen, setTournamentOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const { user, logout} = useAuth();
+
   const navigate=useNavigate()
 
   useEffect(() => {
@@ -33,10 +36,8 @@ const Navbar = () => {
       <div className="relative flex flex-col max-w-screen-xl p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between lg:justify-start">
           <a
-            className="text-lg font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8"
-            href="/home"
-          >
-            SDMS
+            className="text-lg font-bold tracking-tighter text-blue-600 transition duration-500 ease-in-out transform tracking-relaxed lg:pr-8">
+            <Link to="/">SDMS</Link>
           </a>
           <button
             className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
@@ -50,6 +51,9 @@ const Navbar = () => {
         </div>
 
         <nav className={`md:flex md:justify-end md:flex-row lg:border-l-2 lg:pl-2 ${open ? 'flex' : 'hidden'}`}>
+        <a className="px-4 py-2 mt-2 text-sm text-white md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline">
+            <Link to="/">Home</Link>
+          </a>
           <a className="px-4 py-2 mt-2 text-sm text-white md:mt-0 hover:text-blue-600 focus:outline-none focus:shadow-outline">
             <Link to="/about">About</Link>
           </a>
@@ -69,16 +73,16 @@ const Navbar = () => {
             <div className={`z-10 ${tournamentOpen ? 'block' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 absolute mt-2 space-y-2`}>
             <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby="dropdownDividerButton">
     <li>
-      <Link to="/events" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Games & Draws</Link>
+      <Link to="/tournament/events" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Games & Draws</Link>
     </li>
     <li>
-      <Link to="Teams" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Teams</Link>
+      <Link to="/tournament/Team" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Teams</Link>
     </li>
     <li>
-      <Link to="/Coaches" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Coaches</Link>
+      <Link to="/tournament/Coaches" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Coaches</Link>
     </li>
     <li>
-      <Link to="/players" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Players</Link>
+      <Link to="/tournament/players" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Players</Link>
     </li>
   </ul>
               {/* <div className="py-2">
@@ -86,13 +90,17 @@ const Navbar = () => {
               </div> */}
             </div>
           </div>
-          <div className="inline-flex items-center gap-2 list-none lg:ml-auto">
-            <button onClick={login} className="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-             LOGIN
-            </button>
-            <button onClick={register} className="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-              Sign up
-            </button>
+          <div>
+            {user ? (<button onClick={logout} className="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-red-700 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Logout</button>) : (
+              <div className="inline-flex items-center gap-2 list-none lg:ml-auto">
+                <button onClick={login} className="items-center block px-10 py-2.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                   LOGIN
+                </button>
+                <button onClick={register} className="items-center block px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                  Sign up
+                </button>
+              </div>
+            )}
           </div>
         </nav>
       </div>
