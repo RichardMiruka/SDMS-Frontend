@@ -10,13 +10,13 @@ function EventPlayers() {
     
 
     useEffect(() => {
-      customFetcher(`http://localhost:5000/api/v1/events/${event_id}/players`)
+      customFetcher(`http://54.236.44.210:5000/api/v1/events/${event_id}/players`)
         .then(({data}) => setEventTeam(data))
         .catch(error => console.error('Error fetching teams:', error));
     }, []);
 
     useEffect(() => {
-      customFetcher(`http://localhost:5000/api/v1/events/${event_id}/category_players`)
+      customFetcher(`http://54.236.44.210:5000/api/v1/events/${event_id}/category_players`)
       .then(({ data }) => setCategory(data))
       .catch(error => console.error('Error fetching categories', error))
     }, []);

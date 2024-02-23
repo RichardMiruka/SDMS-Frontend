@@ -16,7 +16,7 @@ const LoginPage = ({ onLogin }) => {
 
   const handleLogin=async(e)=>{
     e.preventDefault();
-    try { const response=await fetch('http://localhost:5000/api/v1/login',{
+    try { const response=await fetch('http://54.236.44.210:5000/api/v1/login',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'

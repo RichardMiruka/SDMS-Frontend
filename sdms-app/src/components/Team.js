@@ -54,7 +54,7 @@ export function TeamList() {
   }
 
   const updateTeamData = function () {
-    customFetcher('http://localhost:5000/api/v1/teams')
+    customFetcher('http://54.236.44.210:5000/api/v1/teams')
       .then(({ data }) => setTeamData(data))
       .catch(error => setError(error.message))
       .finally(() => setLoading(false));
@@ -67,7 +67,7 @@ export function TeamList() {
 
   useEffect(() => {
 
-    customFetcher('http://localhost:5000/api/v1/teams')
+    customFetcher('http://54.236.44.210:5000/api/v1/teams')
       .then(({ data }) => setTeamData(data))
       .catch(error => setError(error.message))
       .finally(() => setLoading(false));

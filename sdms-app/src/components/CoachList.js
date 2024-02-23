@@ -8,7 +8,7 @@ const CoachList = () => {
   const defaultImageUrl = 'https://images.unsplash.com/photo-1605509603173-ab689807e860?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
   useEffect(() => {
-    customFetcher('http://localhost:5000/api/v1/coaches')
+    customFetcher('http://54.236.44.210:5000/api/v1/coaches')
       .then(({data}) => setCoaches(data))
       .catch(error => console.error('Error fetching coaches:', error));
   }, []);

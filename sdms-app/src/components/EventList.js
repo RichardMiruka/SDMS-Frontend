@@ -34,7 +34,7 @@ const EventList = () => {
   };
 
   useEffect(() => {
-    customFetcher('http://localhost:5000/api/v1/events')
+    customFetcher('http://54.236.44.210:5000/api/v1/events')
       .then(({ data }) => setEvents(data))
       .catch(error => console.error('Error fetching events:', error));
   }, []);
