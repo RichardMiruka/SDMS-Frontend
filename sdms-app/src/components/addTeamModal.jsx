@@ -15,7 +15,7 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
   useEffect(() => {
     const fetchCoaches = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/api/v1/coaches');
+        const response = await fetch('http://54.236.44.210:5000/api/v1/coaches');
         if (!response.ok) {
           throw new Error(`Failed to fetch coaches. Status: ${response.status}`);
         }
@@ -51,7 +51,7 @@ export default function Modal({ isOpen, setIsOpen, setTeamData }) {
 		messageRef.current.value = "";
     coachRef.current.value = "";
   
-		  const response = await fetch('http://127.0.0.1:5000/api/v1/teams', {
+		  const response = await fetch('http://54.236.44.210:5000/api/v1/teams', {
 			method: 'POST',
 			headers: {
 			  'Content-Type': 'application/json',

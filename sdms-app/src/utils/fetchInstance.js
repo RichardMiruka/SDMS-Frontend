@@ -15,7 +15,7 @@ const originalRequest = async (url, config) => {
 
 const refreshToken = async (authTokens) => {
   try {
-    const response = await fetch('http://127.0.0.1:5000/api/v1/token/refresh/', {
+    const response = await fetch('http://54.236.44.210:5000/api/v1/token/refresh/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -43,21 +43,21 @@ export function TeamList() {
   };
 
   const deleteTeam = function (teamId) {
-    customFetcher(`http://127.0.0.1:5000/api/v1/teams/${teamId}`,  {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-        .then(()=> updateTeamData())
-        .catch(error => console.error('Error deleting team:', error))  
+    customFetcher(`http://54.236.44.210:5000/api/v1/teams/${teamId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(() => updateTeamData())
+      .catch(error => console.error('Error deleting team:', error))
   }
 
   const updateTeamData = function () {
-    customFetcher('http://127.0.0.1:5000/api/v1/teams')
-        .then(({ data })=>  setTeamData(data))
-        .catch(error => setError(error.message))
-        .finally(() => setLoading(false));
+    customFetcher('http://54.236.44.210:5000/api/v1/teams')
+      .then(({ data }) => setTeamData(data))
+      .catch(error => setError(error.message))
+      .finally(() => setLoading(false));
 
   }
 
@@ -67,14 +67,14 @@ export function TeamList() {
 
   useEffect(() => {
 
-    customFetcher('http://127.0.0.1:5000/api/v1/teams')
-      .then(({ data })=>  setTeamData(data))
+    customFetcher('http://54.236.44.210:5000/api/v1/teams')
+      .then(({ data }) => setTeamData(data))
       .catch(error => setError(error.message))
       .finally(() => setLoading(false));
 
   }, []);
 
-  
+
   if (loading) {
     return <p>Loading...</p>;
   }

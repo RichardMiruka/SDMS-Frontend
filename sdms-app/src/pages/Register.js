@@ -37,7 +37,7 @@ const RegisterPage = ({ onLogin }) => {
 
   const navigate=useNavigate()
   const handleRegister=async(e)=>{
-    try { const response=await fetch('http://127.0.0.1:5000/api/v1/users',{
+    try { const response=await fetch('http://54.236.44.210:5000/api/v1/users',{
     method:'POST',
     headers:{
       'Content-Type':'application/json'
