@@ -12,7 +12,7 @@ const PlayerList = () => {
 
   useEffect(() => {
     
-    customFetcher('http://54.236.44.210:5000/api/v1/players')
+    customFetcher('http://localhost:5000/api/v1/players')
       .then(({ data })=> setPlayers(data))
       .catch(error => console.error('Error fetching players:', error));
   }, []);

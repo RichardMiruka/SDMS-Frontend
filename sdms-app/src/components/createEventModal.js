@@ -20,7 +20,7 @@ export default function CreateEventModal({ isOpen, onClose, onAddEvent }) {
       // Clear input values
       nameRef.current.value = "";
 
-      const response = await fetch('http://54.236.44.210:5000/api/v1/events', {
+      const response = await fetch('http://localhost:5000/api/v1/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

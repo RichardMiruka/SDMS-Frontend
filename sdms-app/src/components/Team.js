@@ -43,7 +43,7 @@ export function TeamList() {
   };
 
   const deleteTeam = function (teamId) {
-    customFetcher(`http://54.236.44.210:5000/api/v1/teams/${teamId}`, {
+    customFetcher(`http://localhost:5000/api/v1/teams/${teamId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export function TeamList() {
   }
 
   const updateTeamData = function () {
-    customFetcher('http://54.236.44.210:5000/api/v1/teams')
+    customFetcher('http://localhost:5000/api/v1/teams')
       .then(({ data }) => setTeamData(data))
       .catch(error => setError(error.message))
       .finally(() => setLoading(false));
@@ -67,7 +67,7 @@ export function TeamList() {
 
   useEffect(() => {
 
-    customFetcher('http://54.236.44.210:5000/api/v1/teams')
+    customFetcher('http://localhost:5000/api/v1/teams')
       .then(({ data }) => setTeamData(data))
       .catch(error => setError(error.message))
       .finally(() => setLoading(false));

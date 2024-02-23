@@ -7,6 +7,6 @@ npm run build
 echo "Deploying files to server"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/school
-scp -i ~/.ssh/home -r build/* root@54.236.44.210:/var/www/54.236.44.210/
+scp -i ~/.ssh/school -o StrictHostKeyChecking=no -r build/* ubuntu@54.236.44.210:/var/www/54.236.44.210/
 
 echo "Done!"
