@@ -44,6 +44,7 @@ const App = () => {
           <Route path="/Register" element={<RegisterPage />} />
           <Route path='/Login' element={< LoginPage />} />
         </Routes>
+        <Footer />
       </AuthProvider>
     </Router>
   );
